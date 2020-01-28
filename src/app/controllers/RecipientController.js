@@ -54,13 +54,6 @@ class RecipientController {
       ],
     });
 
-    if (recipients.length === 0) {
-      return res.status(200).json({
-        error:
-          'No one recipient was found. Please register someone and try again. ',
-      });
-    }
-
     return res.json(recipients);
   }
 
