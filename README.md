@@ -117,7 +117,9 @@ You can learn more about the [Routes](./ROUTES.md), or you can see [the own file
 
 ## Demo
 
-You can try a DevRadar online demo in [https://1dois.com.br/devradar](https://1dois.com.br/devradar) (without navigator current location)
+Live demo incoming.
+
+<!-- You can try a DevRadar online demo in [https://1dois.com.br/devradar](https://1dois.com.br/devradar) (without navigator current location) -->
 
 ## :heavy_check_mark: Stack
 
