@@ -128,7 +128,7 @@ Live demo incoming.
 | :heavy_check_mark: Nodemon            |           :heavy_check_mark: Bcrypt            |
 | Bee-queue          |           :heavy_check_mark: Dotenv            |
 | Express Handlebars |    Express-async-errors     |
-| :heavy_check_mark: Pg and pg-hstore   |             JWT             |
+| :heavy_check_mark: Pg and pg-hstore   |            :heavy_check_mark: JWT             |
 | :heavy_check_mark: Sequelize          |           Sentry            |
 | Express Handlebars |            Youch            |
 |                    |             :heavy_check_mark: Yup             |
@@ -137,7 +137,7 @@ Live demo incoming.
 
 MIT License.
 
-See [LICENSE.md](LICENSE.md) for details.
+See [LICENSE](LICENSE) for details.
 
 <hr/>
 
