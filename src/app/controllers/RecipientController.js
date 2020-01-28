@@ -55,7 +55,7 @@ class RecipientController {
     });
 
     if (recipients.length === 0) {
-      return res.status(400).json({
+      return res.status(200).json({
         error:
           'No one recipient was found. Please register someone and try again. ',
       });
@@ -118,7 +118,39 @@ class RecipientController {
   }
 
   async delete(req, res) {
-    return res.json({ ok: true });
+    const { id } = req.params;
+
+    const recipient = await Recipient.findOne({
+      where: { id },
+    });
+
+    if (!recipient) {
+      return res.status(400).json({ error: 'Recipient does not found.' });
+    }
+
+    await recipient.destroy();
+
+    const recipients = await Recipient.findAll({
+      attributes: [
+        'id',
+        'name',
+        'address',
+        'number',
+        'complement',
+        'state',
+        'city',
+        'cep',
+      ],
+    });
+
+    if (recipients.length === 0) {
+      return res.status(200).json({
+        error:
+          'No one recipient was found. Please register someone and try again. ',
+      });
+    }
+
+    return res.json(recipients);
   }
 }
 
