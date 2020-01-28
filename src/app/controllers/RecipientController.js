@@ -81,9 +81,7 @@ class RecipientController {
 
     const { id } = req.params;
 
-    const recipient = await Recipient.findOne({
-      where: { id },
-    });
+    const recipient = await Recipient.findByPk(id);
 
     if (!recipient) {
       return res.status(400).json({ error: 'Recipient does not found.' });
@@ -120,9 +118,7 @@ class RecipientController {
   async delete(req, res) {
     const { id } = req.params;
 
-    const recipient = await Recipient.findOne({
-      where: { id },
-    });
+    const recipient = await Recipient.findByPk(id);
 
     if (!recipient) {
       return res.status(400).json({ error: 'Recipient does not found.' });
