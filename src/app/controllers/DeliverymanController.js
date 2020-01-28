@@ -38,6 +38,14 @@ class DeliverymanController {
     return res.json(deliveryman);
   }
 
+  async index(req, res) {
+    const deliverymans = await Deliveryman.findAll({
+      attributes: ['id', 'name', 'email', 'avatar_id'],
+    });
+
+    return res.json(deliverymans);
+  }
+
   async delete(req, res) {
     const { id } = req.params;
 
