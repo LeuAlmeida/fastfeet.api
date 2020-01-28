@@ -52,11 +52,9 @@ $ sudo docker run --name fastfeet -e POSTGRES_PASSWORD=<password> -p 5432:5432 -
 
 ### :closed_lock_with_key: Getting started the API Restful backend
 
-You will need to run the API using some Docker Images like [PostgreSQL](https://hub.docker.com/_/postgres) and [Redis](https://hub.docker.com/_/redis/).
-
 ```shell
 # First of all, clone the project
-$ git clone https://github.com/LeuAlmeida/devradar.git
+$ git clone https://github.com/LeuAlmeida/fastfeet.api.git
 
 # Enter in the DevRadar folder
 $ cd fastfeet.api
@@ -81,12 +79,12 @@ $ yarn dev
 
 # Case the output appears like this, is all ok
 yarn run v1.19.1
-$ nodemon src/index.js
+$ nodemon src/server.js
 [nodemon] 2.0.2
 [nodemon] to restart at any time, enter `rs`
 [nodemon] watching dir(s): *.*
 [nodemon] watching extensions: js,mjs,json
-[nodemon] starting `node src/index.js`
+[nodemon] starting `node -r sucrase/register src/server.js`
 
 # The backend will run on port 3333
 # https://localhost:3333
@@ -94,7 +92,7 @@ $ nodemon src/index.js
 
 ## Routes
 
-You can learn more about the (Routes)[./routes.MD], or you can see [the own file](./src/routes.js).
+You can learn more about the (Routes)[./ROUTES.md], or you can see [the own file](./src/routes.js).
 
 ## Demo
 
@@ -123,19 +121,3 @@ See [LICENSE.md](LICENSE.md) for details.
 <h3 align="center">
 <a href="http://linkedin.com/in/leonardoalmeida99">Connect me in LinkedIn</a> | <a href="http://behance.net/almeida99">See my Behance</a> | <a href="https://leunardo.dev">Click here to go to my CV</a>
 </h3>
-
-
-
-# FastFeet API Restful
-
-> Migrations
-
-> Scripts
-
-```js
-$ yarn dev
-```
-> Docker
-
-PostgreSQL:
-`$ docker run --name fastfeet -e POSTGRES_PASSWORD=<PASSWORD> -p 5432:5432 -d postgres:11`
