@@ -5,7 +5,8 @@
 <h1 align="center">FastFeet API from Rocketseat GoStack</h1>
 
 <blockquote align="center">
-:mag_right: Find devs near you and let's code!
+<!-- :mag_right: Find devs near you and let's code! -->
+Description is coming.
 </blockquote>
 
 <p align="center">
@@ -24,13 +25,15 @@
 
 ## Introduction
 
-[DevRadar](https://github.com/LeuAlmeida/devradar) is a fullstack project created to find developers near you based on your navigator location.
+Introduction is coming.
+
+<!-- [DevRadar](https://github.com/LeuAlmeida/devradar) is a fullstack project created to find developers near you based on your navigator location.
 * In the [backend](./backend) you can use our API Restful to manage your application.
 * In the [frontend version](./web) you can create and maintenance the list of devs.
 * In the [mobile app](./mobile) you can view and find for devs near you.
 
 This project was made using Node.js to create a Restful API based on Express and are supplied with a ReactJS FrontEnd application and React Native mobile app using Expo Cli.
-All the knowledges available on this project was reached at the Omnistack Week 10 provided by [@Rocketseat](https://github.com/rocketseat).
+All the knowledges available on this project was reached at the Omnistack Week 10 provided by [@Rocketseat](https://github.com/rocketseat). -->
 
 ## :electric_plug: Prerequisites
 
