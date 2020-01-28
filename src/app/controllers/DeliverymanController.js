@@ -1,3 +1,4 @@
+import { Op } from 'sequelize';
 import * as Yup from 'yup';
 
 import Deliveryman from '../models/Deliveryman';
@@ -7,7 +8,9 @@ class DeliverymanController {
   async store(req, res) {
     const schema = Yup.object().shape({
       name: Yup.string().required(),
-      email: Yup.string().required(),
+      email: Yup.string()
+        .email()
+        .required(),
       avatar_id: Yup.number(),
     });
 
@@ -65,7 +68,49 @@ class DeliverymanController {
   }
 
   async update(req, res) {
-    return res.json({ ok: true });
+    const schema = Yup.object().shape({
+      name: Yup.string(),
+      email: Yup.string().email(),
+    });
+
+    if (!(await schema.isValid(req.body))) {
+      return res.status(400).json({ error: 'Validation fails' });
+    }
+
+    const { id } = req.params;
+
+    const deliveryman = await Deliveryman.findByPk(id);
+
+    if (!deliveryman) {
+      return res.status(400).json({ error: 'Deliveryman does not found.' });
+    }
+
+    const { email } = req.body;
+
+    if (email) {
+      const emailExists = await Deliveryman.findOne({
+        where: {
+          email,
+          id: {
+            [Op.not]: id,
+          },
+        },
+      });
+
+      if (emailExists) {
+        return res
+          .status(400)
+          .json({ error: 'This email is already registered.' });
+      }
+    }
+
+    const { name, avatar_id } = await deliveryman.update(req.body);
+
+    return res.json({
+      name,
+      email,
+      avatar_id,
+    });
   }
 }
 
