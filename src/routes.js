@@ -12,5 +12,6 @@ routes.post('/login', SessionController.store);
 routes.use(authMiddleware);
 
 routes.post('/recipients', RecipientController.store);
+routes.get('/recipients', RecipientController.index);
 
 export default routes;
