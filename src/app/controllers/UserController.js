@@ -6,7 +6,23 @@ class UserController {
   }
 
   async store(req, res) {
-    return null;
+    const { email } = req.body;
+
+    const userExists = await User.findOne({ where: { email } });
+
+    if (userExists) {
+      return res
+        .status(400)
+        .json({ error: 'This email is already registered.' });
+    }
+
+    const { id, name } = await User.create(req.body);
+
+    return res.json({
+      id,
+      name,
+      email,
+    });
   }
 
   async delete(req, res) {
@@ -18,4 +34,4 @@ class UserController {
   }
 }
 
-export default UserController();
+export default new UserController();
