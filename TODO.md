@@ -12,12 +12,12 @@ Abaixo estão descritas as funcionalidades que você deve adicionar em sua aplic
 
 [ ] Permita que o administrador possa cadastrar entregadores para a plataforma, o entregador deve possuir os seguintes campos:
 
-- [ ] id (id do entregador)
-- [ ] name (nome do entregador);
-- [ ] avatar_id (foto do entregador);
-- [ ] email (email do entregador)
-- [ ] created_at;
-- [ ] updated_at;
+- [X] id (id do entregador)
+- [X] name (nome do entregador);
+- [X] avatar_id (foto do entregador);
+- [X] email (email do entregador)
+- [X] created_at;
+- [X] updated_at;
 
 [ ] Crie rotas para listagem/cadastro/atualização/remoção de entregadores;
 
