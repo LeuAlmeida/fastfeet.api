@@ -95,7 +95,7 @@ $ nodemon src/server.js
 
 ## Routes
 
-You can learn more about the (Routes)[./ROUTES.md], or you can see [the own file](./src/routes.js).
+You can learn more about the [Routes](./ROUTES.md), or you can see [the own file](./src/routes.js).
 
 ## Demo
 
