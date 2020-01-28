@@ -28,7 +28,10 @@ Description is coming.
 
 Introduction is coming.
 
-<!-- [DevRadar](https://github.com/LeuAlmeida/devradar) is a fullstack project created to find developers near you based on your navigator location.
+This API is based on Express for the overall structure, uses PostgreSQL for data storage, Redis for queue data control in conjunction with Bee-queue, and Sentry for error control and internal problem maintenance.
+Functions general features that use SMTP to trigger e-mails are done through `nodemailer` using `express-handlebars` and `nodemailer-express-handlebars` are kept in the [src/app/views/emails](https://github.com/LeuAlmeida/devfit.backend/tree/master/src/app/views/emails) folder.
+
+<!-- [Fastfeet](https://github.com/LeuAlmeida/fastfeet.api) is a fullstack project created to find developers near you based on your navigator location.
 * In the [backend](./backend) you can use our API Restful to manage your application.
 * In the [frontend version](./web) you can create and maintenance the list of devs.
 * In the [mobile app](./mobile) you can view and find for devs near you.
@@ -120,13 +123,13 @@ You can try a DevRadar online demo in [https://1dois.com.br/devradar](https://1d
 
 | Dependencies       | Security and Prevent errors |
 | ------------------ | :-------------------------: |
-| Nodemon            |           Bcrypt            |
-| Bee-queue          |           Dotenv            |
+| :heavy_check_mark: Nodemon            |           :heavy_check_mark: Bcrypt            |
+| Bee-queue          |           :heavy_check_mark: Dotenv            |
 | Express Handlebars |    Express-async-errors     |
-| Pg and pg-hstore   |             JWT             |
-| Sequelize          |           Sentry            |
+| :heavy_check_mark: Pg and pg-hstore   |             JWT             |
+| :heavy_check_mark: Sequelize          |           Sentry            |
 | Express Handlebars |            Youch            |
-|                    |             Yup             |
+|                    |             :heavy_check_mark: Yup             |
 
 ## :copyright: License
 
