@@ -45,7 +45,21 @@ class UserController {
   }
 
   async delete(req, res) {
-    return null;
+    const { id } = req.params;
+
+    const user = await User.findByPk(id);
+
+    if (!user) {
+      return res.status(400).json({ error: 'User does not found.' });
+    }
+
+    await user.destroy();
+
+    const allUsers = await User.findAll({
+      attributes: ['id', 'name', 'email'],
+    });
+
+    return res.json(allUsers);
   }
 
   async update(req, res) {
