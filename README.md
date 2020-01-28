@@ -17,7 +17,6 @@ Description is coming.
   </a>
 
   <img alt="License" src="https://img.shields.io/badge/license-MIT-%2304D361">
-
   <a href="https://www.codacy.com/manual/LeuALmeida/fastfeet.api?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=leua-meida/fastfeet.api&amp;utm_campaign=Badge_Grade"><img src="https://api.codacy.com/project/badge/Grade/147d0b2836734c79b7ee5ea035f065b4"/></a>
 </p>
 
@@ -56,6 +55,8 @@ $ sudo docker run --name fastfeet -e POSTGRES_PASSWORD=<password> -p 5432:5432 -
 
 ### :closed_lock_with_key: Getting started the API Restful backend
 
+Make a clone from the repo and install the dependencies
+
 ```shell
 # First of all, clone the project
 $ git clone https://github.com/LeuAlmeida/fastfeet.api.git
@@ -65,19 +66,32 @@ $ cd fastfeet.api
 
 # Install all dependencies using Yarn
 $ yarn
+```
 
+Certify yourself that all environments are correct.
+
+```shell
 # Copy the .env folder
 $ cp .env.example .env
 
 # Insert your environments into .env file
 $ nano .env
 
+```
+
+Prepare the PostgreSQL database
+
+```shell
 # Migrate the database
 $ yarn sequelize db:migrate
 
 # Run the seeds
 $ yarn sequelize db:seed:all
+```
 
+Start the project
+
+```shell
 # Run the development server
 $ yarn dev
 
