@@ -1,10 +1,18 @@
-// import Deliveryman from '../models/Deliveryman';
+import Deliveryman from '../models/Deliveryman';
 
 class DeliverymanController {
   async store(req, res) {
-    const { name, email } = req.body;
+    const { email } = req.body;
 
-    return res.json({ name, email });
+    const userExists = await Deliveryman.findOne({ where: { email } });
+
+    if (userExists) {
+      return res.status(400).json({ error: 'Deliveryman already exists.' });
+    }
+
+    const { id, name } = await Deliveryman.create(req.body);
+
+    return res.json({ id, name, email });
   }
 }
 
