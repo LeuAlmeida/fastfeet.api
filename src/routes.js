@@ -24,5 +24,6 @@ routes.put('/recipients/:id', RecipientController.update);
 routes.delete('/recipients/:id', RecipientController.delete);
 
 routes.post('/deliveryman', DeliverymanController.store);
+routes.delete('/deliveryman', DeliverymanController.delete);
 
 export default routes;

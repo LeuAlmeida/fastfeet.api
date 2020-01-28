@@ -37,6 +37,10 @@ class DeliverymanController {
 
     return res.json(deliveryman);
   }
+
+  async delete(req, res) {
+    return res.json({ ok: true });
+  }
 }
 
 export default new DeliverymanController();
