@@ -3,7 +3,11 @@ import User from '../models/User';
 
 class UserController {
   async index(req, res) {
-    return null;
+    const users = await User.findAll({
+      attributes: ['id', 'name', 'email'],
+    });
+
+    return res.json(users);
   }
 
   async store(req, res) {
