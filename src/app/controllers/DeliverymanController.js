@@ -63,6 +63,10 @@ class DeliverymanController {
 
     return res.json(allDeliverymans);
   }
+
+  async update(req, res) {
+    return res.json({ ok: true });
+  }
 }
 
 export default new DeliverymanController();
