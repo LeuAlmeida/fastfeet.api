@@ -116,6 +116,10 @@ class RecipientController {
       cep,
     });
   }
+
+  async delete(req, res) {
+    return res.json({ ok: true });
+  }
 }
 
 export default new RecipientController();
