@@ -10,7 +10,7 @@ Abaixo estão descritas as funcionalidades que você deve adicionar em sua aplic
 
 ### **1. Gestão de entregadores**
 
-[ ] Permita que o administrador possa cadastrar entregadores para a plataforma, o entregador deve possuir os seguintes campos:
+[X] Permita que o administrador possa cadastrar entregadores para a plataforma, o entregador deve possuir os seguintes campos:
 
 - [X] id (id do entregador)
 - [X] name (nome do entregador);
@@ -19,7 +19,7 @@ Abaixo estão descritas as funcionalidades que você deve adicionar em sua aplic
 - [X] created_at;
 - [X] updated_at;
 
-[ ] Crie rotas para listagem/cadastro/atualização/remoção de entregadores;
+[X] Crie rotas para listagem/cadastro/atualização/remoção de entregadores;
 
 Obs.: Essa funcionalidade é para administradores autenticados na aplicação.
 
