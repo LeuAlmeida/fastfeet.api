@@ -1,8 +1,8 @@
 <p align="center">
-<img width="300" alt="DevRadar" src="./presentation/logo.png" />
+<img width="300" alt="FastFeet" src="./presentation/logo.png" />
 </p>
 
-<h1 align="center">FastFeet from Rocketseat GoStack</h1>
+<h1 align="center">FastFeet API from Rocketseat GoStack</h1>
 
 <blockquote align="center">
 :mag_right: Find devs near you and let's code!
@@ -32,15 +32,23 @@
 This project was made using Node.js to create a Restful API based on Express and are supplied with a ReactJS FrontEnd application and React Native mobile app using Expo Cli.
 All the knowledges available on this project was reached at the Omnistack Week 10 provided by [@Rocketseat](https://github.com/rocketseat).
 
-## Quick Start
-
-First get all the requirements installed on your system.
-
-### :electric_plug: Prerequisites
+## :electric_plug: Prerequisites
 
 - [Node.js LTS (>= 10.x)](https://nodejs.org/)
 - [Yarn (>= 1.19)](https://yarnpkg.com/) or [NPM (>= 6.9)](https://www.npmjs.com/)
 - [Docker CE (>= 19.03.3)](https://docs.docker.com/install/)
+
+## Quick Start
+
+First get all the requirements installed on your system.
+You will need to run the API using some Docker Images like [PostgreSQL](https://hub.docker.com/_/postgres) and [Redis](https://hub.docker.com/_/redis/).
+Certified that do you have wall prerequisites, start the docker images dependencies:
+
+```shell
+# Change the <password> below and on .env file
+$ sudo docker run --name fastfeet -e POSTGRES_PASSWORD=<password> -p 5432:5432 -d postgres:11
+```
+
 
 ### :closed_lock_with_key: Getting started the API Restful backend
 
@@ -56,14 +64,17 @@ $ cd fastfeet.api
 # Install all dependencies using Yarn
 $ yarn
 
-# Or install dependencies using npm
-$ npm install
-
 # Copy the .env folder
 $ cp .env.example .env
 
 # Insert your environments into .env file
 $ nano .env
+
+# Migrate the database
+$ yarn sequelize db:migrate
+
+# Run the seeds
+$ yarn sequelize db:seed:all
 
 # Run the development server
 $ yarn dev
@@ -80,6 +91,10 @@ $ nodemon src/index.js
 # The backend will run on port 3333
 # https://localhost:3333
 ```
+
+## Routes
+
+You can learn more about the (Routes)[./routes.MD], or you can see [the own file](./src/routes.js).
 
 ## Demo
 
