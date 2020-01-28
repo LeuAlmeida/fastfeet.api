@@ -29,16 +29,16 @@ Obs.: Essa funcionalidade é para administradores autenticados na aplicação.
 
 Nessa funcionalidade criaremos um cadastro de encomendas por entregador, a encomenda possui os campos:
 
-- [ ] id (id da entrega)
-- [ ] recipient_id (referência ao destinatário);
-- [ ] deliveryman_id (referência ao entregador);
-- [ ] signature_id (referência à uma assinatura do destinatário, que será uma imagem);
-- [ ] product (nome do produto a ser entregue);
-- [ ] canceled_at (data de cancelamento, se cancelada);
-- [ ] start_date (data de retirada do produto);
-- [ ] end_date (data final da entrega);
-- [ ] created_at;
-- [ ] updated_at;
+- [X] id (id da entrega)
+- [X] recipient_id (referência ao destinatário);
+- [X] deliveryman_id (referência ao entregador);
+- [X] signature_id (referência à uma assinatura do destinatário, que será uma imagem);
+- [X] product (nome do produto a ser entregue);
+- [X] canceled_at (data de cancelamento, se cancelada);
+- [X] start_date (data de retirada do produto);
+- [X] end_date (data final da entrega);
+- [X] created_at;
+- [X] updated_at;
 
 [ ] A **data de início** deve ser cadastrada assim que for feita a retirada do produto pelo entregador, e as retiradas só podem ser feitas entre as 08:00 e 18:00h.
 
