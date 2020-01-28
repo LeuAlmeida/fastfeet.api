@@ -29,7 +29,7 @@ Description is coming.
 Introduction is coming.
 
 This API is based on Express for the overall structure, uses PostgreSQL for data storage, Redis for queue data control in conjunction with Bee-queue, and Sentry for error control and internal problem maintenance.
-Functions general features that use SMTP to trigger e-mails are done through `nodemailer` using `express-handlebars` and `nodemailer-express-handlebars` are kept in the [src/app/views/emails](https://github.com/LeuAlmeida/devfit.backend/tree/master/src/app/views/emails) folder.
+Functions general features that use SMTP to trigger e-mails are done through `nodemailer` using `express-handlebars` and `nodemailer-express-handlebars` are kept in the [src/app/views/emails](src/app/views/emails) folder.
 
 <!-- [Fastfeet](https://github.com/LeuAlmeida/fastfeet.api) is a fullstack project created to find developers near you based on your navigator location.
 * In the [backend](./backend) you can use our API Restful to manage your application.
