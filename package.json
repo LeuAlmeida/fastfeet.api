@@ -4,6 +4,9 @@
   "main": "index.js",
   "author": "LeuAlmeida <leo@webid.net.br>",
   "license": "MIT",
+  "scripts": {
+    "dev": "nodemon src/server.js"
+  },
   "dependencies": {
     "express": "^4.17.1"
   },
