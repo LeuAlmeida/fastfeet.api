@@ -1,0 +1,7 @@
+{
+  "name": "fastfeet.api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "LeuAlmeida <leo@webid.net.br>",
+  "license": "MIT"
+}
