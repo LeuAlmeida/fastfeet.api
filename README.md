@@ -17,6 +17,8 @@ Description is coming.
   </a>
 
   <img alt="License" src="https://img.shields.io/badge/license-MIT-%2304D361">
+
+  <a href="https://www.codacy.com/manual/LeuALmeida/fastfeet.api?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=leua-meida/fastfeet.api&amp;utm_campaign=Badge_Grade"><img src="https://api.codacy.com/project/badge/Grade/147d0b2836734c79b7ee5ea035f065b4"/></a>
 </p>
 
 <p align="center">
@@ -51,7 +53,6 @@ Certified that do you have wall prerequisites, start the docker images dependenc
 # Change the <password> below and on .env file
 $ sudo docker run --name fastfeet -e POSTGRES_PASSWORD=<password> -p 5432:5432 -d postgres:11
 ```
-
 
 ### :closed_lock_with_key: Getting started the API Restful backend
 
@@ -103,15 +104,15 @@ You can try a DevRadar online demo in [https://1dois.com.br/devradar](https://1d
 
 ## :heavy_check_mark: Stack
 
-|       Dependencies            |     Security and Prevent errors   |
-|-------------------------------|:---------------------------------:|
-|       Nodemon                 |     Bcrypt                        |
-|       Bee-queue               |     Dotenv                        |
-|       Express Handlebars      |     Express-async-errors          |
-|       Pg and pg-hstore        |     JWT                           |
-|       Sequelize               |     Sentry                        |
-|       Express Handlebars      |     Youch                         |
-|                               |     Yup                           |
+| Dependencies       | Security and Prevent errors |
+| ------------------ | :-------------------------: |
+| Nodemon            |           Bcrypt            |
+| Bee-queue          |           Dotenv            |
+| Express Handlebars |    Express-async-errors     |
+| Pg and pg-hstore   |             JWT             |
+| Sequelize          |           Sentry            |
+| Express Handlebars |            Youch            |
+|                    |             Yup             |
 
 ## :copyright: License
 
