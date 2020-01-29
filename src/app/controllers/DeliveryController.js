@@ -7,7 +7,44 @@ import File from '../models/File';
 
 class DeliveryController {
   async index(req, res) {
-    return null;
+    const { id } = req.query;
+
+    if (id) {
+      const delivery = await Delivery.findOne({
+        where: { id },
+        attributes: [
+          'id',
+          'product',
+          'canceled_at',
+          'start_date',
+          'end_date',
+          'recipient_id',
+          'deliveryman_id',
+          'signature_id',
+        ],
+      });
+
+      if (!delivery) {
+        return res.status(400).json({ error: 'Delivery does not found.' });
+      }
+
+      return res.json(delivery);
+    }
+
+    const deliveries = await Delivery.findAll({
+      attributes: [
+        'id',
+        'product',
+        'canceled_at',
+        'start_date',
+        'end_date',
+        'recipient_id',
+        'deliveryman_id',
+        'signature_id',
+      ],
+    });
+
+    return res.json(deliveries);
   }
 
   async store(req, res) {
