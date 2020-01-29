@@ -44,7 +44,9 @@ Nessa funcionalidade criaremos um cadastro de encomendas por entregador, a encom
 
 [X] A **data de término** da entrega deve ser cadastrada quando o entregador finalizar a entrega:
 
-[ ] Quando a encomenda é **cadastrada** para um entregador, o entregador recebe um e-mail com detalhes da encomenda, com nome do produto e uma mensagem informando-o que o produto já está disponível para a retirada.
+[X] Quando a encomenda é **cadastrada** para um entregador, o entregador recebe um e-mail com detalhes da encomenda, com `nome do produto` e uma mensagem informando-o que o produto já está disponível para a retirada.
+
+[ ] Criar templates personalizados para os e-mails
 
 [X] Crie rotas para listagem/cadastro/atualização/remoção de encomendas;
 
