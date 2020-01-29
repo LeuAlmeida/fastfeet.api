@@ -46,7 +46,7 @@ Nessa funcionalidade criaremos um cadastro de encomendas por entregador, a encom
 
 [ ] Quando a encomenda é **cadastrada** para um entregador, o entregador recebe um e-mail com detalhes da encomenda, com nome do produto e uma mensagem informando-o que o produto já está disponível para a retirada.
 
-[ ] Crie rotas para listagem/cadastro/atualização/remoção de encomendas;
+[X] Crie rotas para listagem/cadastro/atualização/remoção de encomendas;
 
 [ ] Obs.: Essa funcionalidade é para administradores autenticados na aplicação.
 
