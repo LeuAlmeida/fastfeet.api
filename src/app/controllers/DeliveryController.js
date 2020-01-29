@@ -1,5 +1,7 @@
 import * as Yup from 'yup';
 
+import { Interval } from 'date-fns';
+
 import Delivery from '../models/Delivery';
 import Recipient from '../models/Recipient';
 import Deliveryman from '../models/Deliveryman';
@@ -242,7 +244,30 @@ class DeliveryController {
   }
 
   async delete(req, res) {
-    return null;
+    const { id } = req.params;
+
+    const delivery = await Delivery.findByPk(id);
+
+    if (!delivery) {
+      return res.status(400).json({ error: 'Delivery does not found.' });
+    }
+
+    await delivery.destroy();
+
+    const allDeliveries = await Delivery.findAll({
+      attributes: [
+        'id',
+        'product',
+        'canceled_at',
+        'start_date',
+        'end_date',
+        'recipient_id',
+        'deliveryman_id',
+        'signature_id',
+      ],
+    });
+
+    return res.json(allDeliveries);
   }
 }
 
