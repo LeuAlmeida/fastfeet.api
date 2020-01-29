@@ -64,11 +64,6 @@ class DeliveryController {
     }
 
     const { product, recipient_id, deliveryman_id, signature_id } = req.body;
-    let { start_date } = req.body;
-
-    if (!start_date) {
-      start_date = new Date();
-    }
 
     const recipient = await Recipient.findOne({
       where: {
@@ -103,19 +98,16 @@ class DeliveryController {
     let delivery;
 
     if (recipient && deliveryman && signature) {
-      delivery = await Delivery.create({ ...req.body, start_date });
+      delivery = await Delivery.create(req.body);
 
       await Mail.sendMail({
         to: `${deliveryman.name} <${deliveryman.email}>`,
         subject: `O produto ${product} já está disponível para retirada.`,
         template: 'confirmation',
-        // context: {
-        //   provider: appointment.provider.name,
-        //   user: appointment.user.name,
-        //   date: format(appointment.date, "'dia' dd 'de' MMMM', às' H:mm'h'", {
-        //     locale: pt,
-        //   }),
-        // },
+        context: {
+          deliveryman: deliveryman.name,
+          product,
+        },
       });
     }
     return res.json(delivery);
@@ -124,6 +116,7 @@ class DeliveryController {
   async update(req, res) {
     const schema = Yup.object().shape({
       product: Yup.string(),
+      start_date: Yup.date(),
       recipient_id: Yup.number(),
       deliveryman_id: Yup.number(),
       signature_id: Yup.number(),
