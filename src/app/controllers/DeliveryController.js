@@ -7,6 +7,8 @@ import Recipient from '../models/Recipient';
 import Deliveryman from '../models/Deliveryman';
 import File from '../models/File';
 
+import Mail from '../../lib/Mail';
+
 class DeliveryController {
   async index(req, res) {
     const { id } = req.query;
@@ -61,7 +63,7 @@ class DeliveryController {
       return res.status(400).json({ error: 'Validation fails.' });
     }
 
-    const { recipient_id, deliveryman_id, signature_id } = req.body;
+    const { product, recipient_id, deliveryman_id, signature_id } = req.body;
     let { start_date } = req.body;
 
     if (!start_date) {
@@ -98,8 +100,24 @@ class DeliveryController {
       return res.status(400).json({ error: 'Signature does not found.' });
     }
 
-    const delivery = await Delivery.create({ ...req.body, start_date });
+    let delivery;
 
+    if (recipient && deliveryman && signature) {
+      delivery = await Delivery.create({ ...req.body, start_date });
+
+      await Mail.sendMail({
+        to: `${deliveryman.name} <${deliveryman.email}>`,
+        subject: `O produto ${product} já está disponível para retirada.`,
+        template: 'confirmation',
+        // context: {
+        //   provider: appointment.provider.name,
+        //   user: appointment.user.name,
+        //   date: format(appointment.date, "'dia' dd 'de' MMMM', às' H:mm'h'", {
+        //     locale: pt,
+        //   }),
+        // },
+      });
+    }
     return res.json(delivery);
   }
 
