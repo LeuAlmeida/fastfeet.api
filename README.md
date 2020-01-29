@@ -9,7 +9,7 @@
 </blockquote>
 
 <p align="center">
-  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/LeuAlmeida/fastfeet.api?color=%2304D361">
+  <img alt="GitHub language count" src="h<img alt="GitHub language count" src="https://img.shields.io/github/languages/count/LeuAlmeida/fastfeet.api?color=%2304D361">
 
   <a href="https://leunardo.dev">
     <img alt="Made by Léu Almeida" src="https://img.shields.io/badge/made%20by-Léu%20Almeida-%2304D361">
@@ -25,9 +25,9 @@
 
 ## Introduction
 
-[Fastfeet](https://github.com/LeuAlmeida/fastfeet.api) is a fictitious logistic company and this repository belong to the business logic and is the basis of a general structure and all of this be a part of the [Rocketseat bootcamp](https://github.com/rocketseat) certify.
-This API is based on Express for the overall structure, uses PostgreSQL for data storage, Redis for queue data control in conjunction with Bee-queue, and Sentry for error control and internal problem maintenance.
-Functions general features that use SMTP to trigger e-mails are done through `nodemailer` using `express-handlebars` and `nodemailer-express-handlebars` are kept in the [src/app/views/emails](src/app/views/emails) folder.
+[Fastfeet](https://github.com/LeuAlmeida/fastfeet.api) is a fictitious logistic company and this repository belong to the business logic and is the basis of a general structure and all of this be a part of the [Rocketseat bootcamp](https://github.com/rocketseat) certify.  
+This API is based on Express for the overall structure, uses PostgreSQL for data storage, Redis for queue data control in conjunction with Bee-queue, and Sentry for error control and internal problem maintenance.  
+Functions general features that use SMTP to trigger e-mails are done through nodemailer using express-handlebars and nodemailer-express-handlebars are kept in the [src/app/views/emails](src/app/views/emails) folder.
 
 
 ## :electric_plug: Prerequisites
