@@ -1,7 +1,5 @@
 import * as Yup from 'yup';
 
-import { Interval } from 'date-fns';
-
 import Delivery from '../models/Delivery';
 import Recipient from '../models/Recipient';
 import Deliveryman from '../models/Deliveryman';
