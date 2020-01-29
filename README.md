@@ -9,7 +9,7 @@
 </blockquote>
 
 <p align="center">
-  <img alt="GitHub language count" src="h<img alt="GitHub language count" src="https://img.shields.io/github/languages/count/LeuAlmeida/fastfeet.api?color=%2304D361">
+  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/LeuAlmeida/fastfeet.api?color=%2304D361">
 
   <a href="https://leunardo.dev">
     <img alt="Made by Léu Almeida" src="https://img.shields.io/badge/made%20by-Léu%20Almeida-%2304D361">
