@@ -5,8 +5,7 @@
 <h1 align="center">FastFeet API from Rocketseat GoStack</h1>
 
 <blockquote align="center">
-<!-- :mag_right: Find devs near you and let's code! -->
-Description is coming.
+:zap: API to obtain the GoStack bootcamp certify
 </blockquote>
 
 <p align="center">
@@ -20,24 +19,16 @@ Description is coming.
   <a href="https://www.codacy.com/manual/LeuALmeida/fastfeet.api?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=leua-meida/fastfeet.api&amp;utm_campaign=Badge_Grade"><img src="https://api.codacy.com/project/badge/Grade/147d0b2836734c79b7ee5ea035f065b4"/></a>
 </p>
 
-<p align="center">
+<!-- <p align="center">
 <img alt="FastFeet presentation" src="./presentation/presentation.png" />
-</p>
+</p> -->
 
 ## Introduction
 
-Introduction is coming.
-
+[Fastfeet](https://github.com/LeuAlmeida/fastfeet.api) is a fictitious logistic company and this repository belong to the business logic and is the basis of a general structure and all of this be a part of the [Rocketseat bootcamp](https://github.com/rocketseat) certify.
 This API is based on Express for the overall structure, uses PostgreSQL for data storage, Redis for queue data control in conjunction with Bee-queue, and Sentry for error control and internal problem maintenance.
 Functions general features that use SMTP to trigger e-mails are done through `nodemailer` using `express-handlebars` and `nodemailer-express-handlebars` are kept in the [src/app/views/emails](src/app/views/emails) folder.
 
-<!-- [Fastfeet](https://github.com/LeuAlmeida/fastfeet.api) is a fullstack project created to find developers near you based on your navigator location.
-* In the [backend](./backend) you can use our API Restful to manage your application.
-* In the [frontend version](./web) you can create and maintenance the list of devs.
-* In the [mobile app](./mobile) you can view and find for devs near you.
-
-This project was made using Node.js to create a Restful API based on Express and are supplied with a ReactJS FrontEnd application and React Native mobile app using Expo Cli.
-All the knowledges available on this project was reached at the Omnistack Week 10 provided by [@Rocketseat](https://github.com/rocketseat). -->
 
 ## :electric_plug: Prerequisites
 
