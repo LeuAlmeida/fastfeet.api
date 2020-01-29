@@ -25,8 +25,8 @@
 
 ## Introduction
 
-[Fastfeet](https://github.com/LeuAlmeida/fastfeet.api) is a fictitious logistic company and this repository belong to the business logic and is the basis of a general structure and all of this be a part of the [Rocketseat bootcamp](https://github.com/rocketseat) certify.  
-This API is based on Express for the overall structure, uses PostgreSQL for data storage, Redis for queue data control in conjunction with Bee-queue, and Sentry for error control and internal problem maintenance.  
+[Fastfeet](https://github.com/LeuAlmeida/fastfeet.api) is a fictitious logistic company and this repository belong to the business logic and is the basis of a general structure and all of this be a part of the [Rocketseat bootcamp](https://github.com/rocketseat) certify.
+This API is based on Express for the overall structure, uses PostgreSQL for data storage, Redis for queue data control in conjunction with Bee-queue, and Sentry for error control and internal problem maintenance.
 Functions general features that use SMTP to trigger e-mails are done through nodemailer using express-handlebars and nodemailer-express-handlebars are kept in the [src/app/views/emails](src/app/views/emails) folder.
 
 
@@ -118,10 +118,10 @@ Live demo incoming.
 | ------------------ | :-------------------------: |
 | :heavy_check_mark: Nodemon            |           :heavy_check_mark: Bcrypt            |
 | Bee-queue          |           :heavy_check_mark: Dotenv            |
-| Express Handlebars |    Express-async-errors     |
+| :heavy_check_mark: Express Handlebars |    Express-async-errors     |
 | :heavy_check_mark: Pg and pg-hstore   |            :heavy_check_mark: JWT             |
 | :heavy_check_mark: Sequelize          |           Sentry            |
-| Express Handlebars |            Youch            |
+|  |            Youch            |
 |                    |             :heavy_check_mark: Yup             |
 
 ## :copyright: License
