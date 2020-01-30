@@ -8,10 +8,6 @@ class ProblemActionsController {
   async store(req, res) {
     return res.json({ cancel: true });
   }
-
-  async update(req, res) {
-    return res.json({ registerProblem: true });
-  }
 }
 
 export default new ProblemActionsController();
