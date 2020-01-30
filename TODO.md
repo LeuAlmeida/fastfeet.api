@@ -90,15 +90,15 @@ A tabela `delivery_problems` deve conter os seguintes campos:
 - [X] created_at;
 - [X] updated_at;
 
-[ ] Crie uma rota para a distribuidora listar todas as entregas com algum problema;
-
-[ ] Crie uma rota para listar todos os problemas de uma encomenda baseado no ID da encomenda.
+[X] Crie uma rota para listar todos os problemas de uma encomenda baseado no ID da encomenda.
 
 Exemplo de requisição: `GET https://fastfeet.com/delivery/2/problems`
 
-[ ] Crie uma rota para o entregador cadastrar problemas na entrega apenas informando seu ID de cadastro (ID do banco de dados);
+[?] Crie uma rota para o entregador cadastrar problemas na entrega apenas informando seu ID de cadastro (ID do banco de dados);
 
 Exemplo de requisição: `POST https://fastfeet.com/delivery/3/problems`
+
+[X] Crie uma rota para a distribuidora listar todas as entregas com algum problema;
 
 [ ] Crie uma rota para a distribuidora cancelar uma entrega baseado no ID do problema. Esse cancelamento pode acontecer devido a gravidade do problema da entrega, por exemplo, em caso de perda da encomenda.
 
