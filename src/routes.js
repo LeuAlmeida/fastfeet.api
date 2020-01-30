@@ -8,6 +8,7 @@ import RecipientController from './app/controllers/RecipientController';
 import DeliverymanController from './app/controllers/DeliverymanController';
 import DeliveryController from './app/controllers/DeliveryController';
 import DeliveryStatusController from './app/controllers/DeliveryStatusController';
+import DeliveryProblemController from './app/controllers/DeliveryProblemController';
 import FileController from './app/controllers/FileController';
 
 import authMiddleware from './app/middlewares/auth';
@@ -47,5 +48,10 @@ routes.post('/delivery', DeliveryController.store);
 routes.get('/delivery', DeliveryController.index);
 routes.put('/delivery/:id', DeliveryController.update);
 routes.delete('/delivery/:id', DeliveryController.delete);
+
+// routes.get('/delivery/problems', DeliveryProblemController.index);
+// routes.post('/delivery/problems', DeliveryProblemController.store);
+// routes.put('/delivery/problems/:id', DeliveryProblemController.update);
+// routes.delete('/delivery/problems/:id', DeliveryProblemController.delete);
 
 export default routes;
