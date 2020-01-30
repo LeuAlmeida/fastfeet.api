@@ -85,10 +85,10 @@ Exemplo de requisição: `GET https://fastfeet.com/deliveryman/1/deliveries`
 
 A tabela `delivery_problems` deve conter os seguintes campos:
 
-- [ ] delivery_id (referência da encomenda);
-- [ ] description (descrição do problema que o entregador teve);
-- [ ] created_at;
-- [ ] updated_at;
+- [X] delivery_id (referência da encomenda);
+- [X] description (descrição do problema que o entregador teve);
+- [X] created_at;
+- [X] updated_at;
 
 [ ] Crie uma rota para a distribuidora listar todas as entregas com algum problema;
 
