@@ -23,7 +23,7 @@ Abaixo estão descritas as funcionalidades que você deve adicionar em sua aplic
 
 Obs.: Essa funcionalidade é para administradores autenticados na aplicação.
 
-### **2. Gestão de encomendas**
+### (PENDENTE) **2. Gestão de encomendas**
 
 **PENDENTE**
 [ ] Apesar do entregador estar cadastrado, ele não é independente dentro da plataforma, e você deve cadastrar encomendas para os entregadores.
