@@ -49,9 +49,9 @@ routes.get('/delivery', DeliveryController.index);
 routes.put('/delivery/:id', DeliveryController.update);
 routes.delete('/delivery/:id', DeliveryController.delete);
 
-routes.get('/delivery/problems', DeliveryProblemController.index);
-routes.post('/delivery/problems', DeliveryProblemController.store);
-routes.get('/delivery/:id/problems', DeliveryProblemController.index);
+routes.get('/delivery/problems', DeliveryProblemController.index); // OK
+routes.post('/delivery/problems', DeliveryProblemController.store); // OK
+routes.get('/delivery/:id/problems', DeliveryProblemController.index); // OK
 routes.put('/delivery/:id/problems', DeliveryProblemController.update);
 routes.delete('/delivery/:id/problems', DeliveryProblemController.delete);
 
