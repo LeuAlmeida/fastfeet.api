@@ -1,8 +1,10 @@
 import { Op } from 'sequelize';
 import * as Yup from 'yup';
+import { startOfDay, parseISO, isBefore, isAfter, isToday } from 'date-fns';
 
 import Delivery from '../models/Delivery';
 import Deliveryman from '../models/Deliveryman';
+import File from '../models/File';
 
 class DeliveryStatusController {
   async index(req, res) {
@@ -41,11 +43,19 @@ class DeliveryStatusController {
 
     const { id } = req.params;
 
+    /**
+     * Deliveryman verifier
+     */
+
     const deliveryman = await Deliveryman.findByPk(id);
 
     if (!deliveryman) {
       return res.status(400).json({ error: 'Deliveryman does not found. ' });
     }
+
+    /**
+     * Delivery verifier
+     */
 
     const { deliveryId } = req.query;
 
@@ -55,19 +65,74 @@ class DeliveryStatusController {
       return res.status(400).json({ error: 'Delivery does not found. ' });
     }
 
-    const { start_date, end_date } = req.body;
+    /**
+     * Pickups per day verifier
+     */
 
-    const { product, recipient_id, signature_id } = await delivery.update({
+    const allDeliveries = await Delivery.findAll({
+      where: {
+        deliveryman_id: id,
+      },
+    });
+
+    const today = new Date();
+    const thisToday = startOfDay(today);
+
+    let countPicks = 0;
+
+    allDeliveries.forEach(d => {
+      if (isBefore(thisToday, d.start_date)) {
+        countPicks++;
+      }
+    });
+
+    if (countPicks >= 5) {
+      res.status(400).json({
+        error: 'This deliveryman has exceeded the limit of 5 pickups per day.',
+      });
+    }
+
+    /**
+     * Signature verifier if deliveryman try to update with end date
+     */
+
+    const { end_date } = req.query;
+
+    if (end_date) {
+      const { originalname: name, filename: path } = req.file;
+
+      const { id: signature_id } = await File.create({
+        name,
+        path,
+      });
+
+      const { product, recipient_id } = await delivery.update({
+        end_date,
+        signature_id,
+      });
+
+      return res.json({
+        product,
+        recipient_id,
+        signature_id,
+        end_date,
+      });
+    }
+
+    /**
+     * End of verificaitons and start of update method
+     */
+
+    const { start_date } = req.body;
+
+    const { product, recipient_id } = await delivery.update({
       start_date,
-      end_date,
     });
 
     return res.json({
       product,
       recipient_id,
-      signature_id,
       start_date,
-      end_date,
     });
   }
 }
