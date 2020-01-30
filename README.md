@@ -43,8 +43,10 @@ You will need to run the API using some Docker Images like [PostgreSQL](https://
 Certified that do you have wall prerequisites, start the docker images dependencies:
 
 ```shell
-# Change the <password> below and on .env file
+# Change the <password> below and on .env file to run PostgreSQL
 $ sudo docker run --name fastfeet -e POSTGRES_PASSWORD=<password> -p 5432:5432 -d postgres:11
+
+# Execute the Redis docker
 $ sudo docker run --name redisfastfeet -p 6379:6379 -d -t redis:alpine
 ```
 
@@ -63,7 +65,7 @@ $ cd fastfeet.api
 $ yarn
 ```
 
-Certify yourself that all environments are correct.
+Certify yourself that all environments are correct
 
 ```shell
 # Copy the .env folder
