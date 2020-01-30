@@ -67,6 +67,10 @@ class DeliveryController {
 
     const { product, recipient_id, deliveryman_id } = req.body;
 
+    /**
+     * Recipient validators
+     */
+
     const recipient = await Recipient.findOne({
       where: {
         id: recipient_id,
@@ -76,6 +80,10 @@ class DeliveryController {
     if (!recipient) {
       return res.status(400).json({ error: 'Recipient does not found.' });
     }
+
+    /**
+     * Deliveryman validators
+     */
 
     const deliveryman = await Deliveryman.findOne({
       where: {
@@ -87,19 +95,23 @@ class DeliveryController {
       return res.status(400).json({ error: 'Deliveryman does not found.' });
     }
 
-    let delivery;
+    /**
+     * Try to create the delivery and send mail request to queue
+     */
 
-    if (recipient && deliveryman) {
-      delivery = await Delivery.create(req.body);
+    try {
+      const delivery = await Delivery.create(req.body);
 
       await Queue.add(DeliveryConfirmationMail.key, {
         deliveryman,
         product,
         delivery,
       });
-    }
 
-    return res.json(delivery);
+      return res.json(delivery);
+    } catch (err) {
+      return res.status(500).json({ error: 'Error during create delivery' });
+    }
   }
 
   async update(req, res) {
@@ -214,6 +226,10 @@ class DeliveryController {
   async delete(req, res) {
     const { id } = req.params;
 
+    /**
+     * Delivery validators
+     */
+
     const delivery = await Delivery.findByPk(id);
 
     if (!delivery) {
@@ -221,6 +237,10 @@ class DeliveryController {
     }
 
     await delivery.destroy();
+
+    /**
+     * List deliveries rest
+     */
 
     const allDeliveries = await Delivery.findAll({
       attributes: [

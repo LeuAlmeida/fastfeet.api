@@ -1,6 +1,6 @@
 import { Op } from 'sequelize';
 import * as Yup from 'yup';
-import { startOfDay, parseISO, isBefore, isAfter, isToday } from 'date-fns';
+import { startOfDay, isBefore } from 'date-fns';
 
 import Delivery from '../models/Delivery';
 import Deliveryman from '../models/Deliveryman';
@@ -66,7 +66,7 @@ class DeliveryStatusController {
     }
 
     /**
-     * Pickups per day verifier
+     * Limit validators to max 5 pickups per day
      */
 
     const allDeliveries = await Delivery.findAll({
