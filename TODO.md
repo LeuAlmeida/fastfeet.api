@@ -25,6 +25,7 @@ Obs.: Essa funcionalidade é para administradores autenticados na aplicação.
 
 ### **2. Gestão de encomendas**
 
+**PENDENTE**
 [ ] Apesar do entregador estar cadastrado, ele não é independente dentro da plataforma, e você deve cadastrar encomendas para os entregadores.
 
 Nessa funcionalidade criaremos um cadastro de encomendas por entregador, a encomenda possui os campos:
@@ -40,7 +41,9 @@ Nessa funcionalidade criaremos um cadastro de encomendas por entregador, a encom
 - [X] created_at;
 - [X] updated_at;
 
-[ ] A **data de início** deve ser cadastrada assim que for feita a retirada do produto pelo entregador, e as retiradas só podem ser feitas entre as 08:00 e 18:00h.
+[X] A **data de início** deve ser cadastrada assim que for feita a retirada do produto pelo entregador,
+
+[ ] As retiradas só podem ser feitas entre as 08:00 e 18:00h.
 
 [X] A **data de término** da entrega deve ser cadastrada quando o entregador finalizar a entrega:
 
@@ -50,7 +53,7 @@ Nessa funcionalidade criaremos um cadastro de encomendas por entregador, a encom
 
 [X] Crie rotas para listagem/cadastro/atualização/remoção de encomendas;
 
-[ ] Obs.: Essa funcionalidade é para administradores autenticados na aplicação.
+[X] Obs.: Essa funcionalidade é para administradores autenticados na aplicação.
 
 ### **Funcionalidades do entregador**
 
