@@ -1,3 +1,5 @@
+import { Op } from 'sequelize';
+
 import Delivery from '../models/Delivery';
 import Deliveryman from '../models/Deliveryman';
 
@@ -16,7 +18,7 @@ class DeliveriesPerDeliverymanController {
     const deliveries = await Delivery.findAll({
       where: {
         deliveryman_id: id,
-        canceled_at: null,
+        [Op.or]: [{ canceled_at: null }, { end_date: null }],
       },
       attributes: ['id', 'product', 'start_date', 'end_date', 'recipient_id'],
       limit: 10,
