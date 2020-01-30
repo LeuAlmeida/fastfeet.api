@@ -1,5 +1,5 @@
 <p align="center">
-<img width="300" alt="FastFeet" src="logo.png" />
+<img alt="FastFeet" src="logo/fastfeet-api.png" />
 </p>
 
 <h1 align="center">FastFeet API from Rocketseat GoStack</h1>
