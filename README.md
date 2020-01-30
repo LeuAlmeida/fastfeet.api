@@ -105,6 +105,22 @@ $ nodemon src/server.js
 # https://localhost:3333
 ```
 
+In a separated terminal, run the queue
+
+```shell
+# Run the queue to enable mails and dependencies that uses bee-queue
+$ yarn queue
+
+# Case the output appears like this, is all ok
+yarn run v1.19.1
+$ nodemon src/queue.js
+[nodemon] 2.0.2
+[nodemon] to restart at any time, enter `rs`
+[nodemon] watching dir(s): *.*
+[nodemon] watching extensions: js,mjs,json
+[nodemon] starting `node -r sucrase/register src/queue.js`
+```
+
 ## Routes
 
 You can learn more about the [Routes](./ROUTES.md), or you can see [the own file](./src/routes.js).
