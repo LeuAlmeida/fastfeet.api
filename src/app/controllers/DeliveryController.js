@@ -127,6 +127,10 @@ class DeliveryController {
 
     const { id } = req.params;
 
+    /**
+     * Delivery verifications
+     */
+
     const delivery = await Delivery.findByPk(id);
 
     if (!delivery) {
@@ -134,6 +138,10 @@ class DeliveryController {
     }
 
     const { recipient_id, deliveryman_id, signature_id } = req.body;
+
+    /**
+     * Recipient verifications
+     */
 
     const recipient = await Recipient.findOne({
       where: {
@@ -145,6 +153,10 @@ class DeliveryController {
       return res.status(400).json({ error: 'Recipient does not found.' });
     }
 
+    /**
+     * Recipient verification
+     */
+
     const deliveryman = await Deliveryman.findOne({
       where: {
         id: deliveryman_id,
@@ -155,6 +167,10 @@ class DeliveryController {
       return res.status(400).json({ error: 'Deliveryman does not found.' });
     }
 
+    /**
+     * Signature verification
+     */
+
     const signature = await File.findOne({
       where: {
         id: signature_id,
@@ -164,6 +180,10 @@ class DeliveryController {
     if (!signature) {
       return res.status(400).json({ error: 'Signature does not found.' });
     }
+
+    /**
+     * Delivery update (Start date, end date or another infos)
+     */
 
     await delivery.update(req.body);
 
