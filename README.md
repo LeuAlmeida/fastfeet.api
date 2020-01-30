@@ -45,6 +45,7 @@ Certified that do you have wall prerequisites, start the docker images dependenc
 ```shell
 # Change the <password> below and on .env file
 $ sudo docker run --name fastfeet -e POSTGRES_PASSWORD=<password> -p 5432:5432 -d postgres:11
+$ sudo docker run --name redisfastfeet -p 6379:6379 -d -t redis:alpine
 ```
 
 ### :closed_lock_with_key: Getting started the API Restful backend
@@ -116,13 +117,13 @@ Live demo incoming.
 
 | Dependencies       | Security and Prevent errors |
 | ------------------ | :-------------------------: |
-| :heavy_check_mark: Nodemon            |           :heavy_check_mark: Bcrypt            |
-| Bee-queue          |           :heavy_check_mark: Dotenv            |
-| :heavy_check_mark: Express Handlebars |    Express-async-errors     |
-| :heavy_check_mark: Pg and pg-hstore   |            :heavy_check_mark: JWT             |
-| :heavy_check_mark: Sequelize          |           Sentry            |
-|  |            Youch            |
-|                    |             :heavy_check_mark: Yup             |
+| Nodemon            |            Bcrypt           |
+| Bee-queue          |            Dotenv           |
+| Express Handlebars |    Express-async-errors     |
+| Pg and pg-hstore   |             JWT             |
+| Sequelize          |           Sentry            |
+|                    |            Youch            |
+|                    |             Yup             |
 
 ## :copyright: License
 
