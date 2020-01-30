@@ -73,9 +73,11 @@ Exemplo de requisição: `GET https://fastfeet.com/deliveryman/1/deliveries`
 
 ### 2. Alterar status de encomendas
 
-[ ] Você deve permitir que o entregador tenha rotas para incluir uma data de retirada (start_date) e data de entrega (end_date) para as encomendas. O entregador só pode fazer **5 retiradas por dia**.
+[X] Você deve permitir que o entregador tenha rotas para incluir uma data de retirada (start_date) e data de entrega (end_date) para as encomendas.
 
-Obs.: Para a funcionalidade de finalizar a entrega, você deverá permitir o envio de uma imagem que irá preencher o campo signature_id da tabela de encomendas.
+[X] O entregador só pode fazer **5 retiradas por dia**.
+
+[X] Obs.: Para a funcionalidade de finalizar a entrega, você deverá permitir o envio de uma imagem que irá preencher o campo signature_id da tabela de encomendas.
 
 ### 3. Cadastrar problemas nas entregas
 
