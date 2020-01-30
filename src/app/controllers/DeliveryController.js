@@ -1,4 +1,7 @@
 import * as Yup from 'yup';
+import { format, parseISO } from 'date-fns';
+import pt from 'date-fns/locale/pt';
+import { resolve } from 'path';
 
 import Delivery from '../models/Delivery';
 import Recipient from '../models/Recipient';
@@ -6,6 +9,8 @@ import Deliveryman from '../models/Deliveryman';
 import File from '../models/File';
 
 import Mail from '../../lib/Mail';
+
+const folder = resolve(__dirname, '..', 'views', 'emails', 'images');
 
 class DeliveryController {
   async index(req, res) {
@@ -105,7 +110,27 @@ class DeliveryController {
         context: {
           deliveryman: deliveryman.name,
           product,
+          started: format(delivery.createdAt, "dd' de 'MMMM' de 'yyyy", {
+            locale: pt,
+          }),
         },
+        attachments: [
+          {
+            filename: 'logo.png',
+            path: `${folder}/logo.png`,
+            cid: 'logo',
+          },
+          {
+            filename: 'element1.png',
+            path: `${folder}/element1.png`,
+            cid: 'element1',
+          },
+          {
+            filename: 'footer_image.png',
+            path: `${folder}/footer_image.png`,
+            cid: 'footer_image',
+          },
+        ],
       });
     }
     return res.json(delivery);
