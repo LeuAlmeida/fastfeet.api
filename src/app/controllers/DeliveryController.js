@@ -1,5 +1,6 @@
 import * as Yup from 'yup';
 
+// import isWithinRange from 'date-fns/is_within_range';
 import Delivery from '../models/Delivery';
 import Recipient from '../models/Recipient';
 import Deliveryman from '../models/Deliveryman';
@@ -10,7 +11,7 @@ import Queue from '../../lib/Queue';
 
 class DeliveryController {
   async index(req, res) {
-    const { id } = req.query;
+    const { id, page = 1 } = req.query;
 
     if (id) {
       const delivery = await Delivery.findOne({
@@ -34,7 +35,7 @@ class DeliveryController {
       return res.json(delivery);
     }
 
-    const deliveries = await Delivery.findAll({
+    const deliveries = await Delivery.findAndCountAll({
       attributes: [
         'id',
         'product',
@@ -45,6 +46,8 @@ class DeliveryController {
         'deliveryman_id',
         'signature_id',
       ],
+      limit: 10,
+      offset: (page - 1) * 10,
     });
 
     return res.json(deliveries);
@@ -105,6 +108,7 @@ class DeliveryController {
         delivery,
       });
     }
+
     return res.json(delivery);
   }
 
