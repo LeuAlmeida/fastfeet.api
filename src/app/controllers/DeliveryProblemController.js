@@ -5,9 +5,32 @@ import DeliveryProblem from '../models/DeliveryProblem';
 
 class DeliveryProblemController {
   async index(req, res) {
-    const deliveries = await Delivery.findAll();
+    const { id } = req.params;
 
-    return res.json(deliveries);
+    if (id) {
+      /**
+       * List all problems from a delivery based on id of this
+       */
+
+      const problemsInDelivery = await DeliveryProblem.findAll({
+        where: {
+          delivery_id: id,
+        },
+        attributes: ['id', 'description'],
+      });
+
+      if (problemsInDelivery.length === 0) {
+        return res.status(400).json({ error: 'This delivery has no problem.' });
+      }
+
+      return res.json(problemsInDelivery);
+    }
+
+    const problems = await DeliveryProblem.findAll({
+      attributes: ['id', 'description', 'delivery_id'],
+    });
+
+    return res.json(problems);
   }
 
   async store(req, res) {
@@ -34,22 +57,6 @@ class DeliveryProblemController {
 
     if (!delivery) {
       return res.status(400).json({ error: 'Delivery does not found.' });
-    }
-
-    /**
-     * Problem validator
-     */
-
-    const problemExists = await DeliveryProblem.findOne({
-      where: {
-        delivery_id,
-      },
-    });
-
-    if (problemExists) {
-      return res
-        .status(400)
-        .json({ error: 'A problem is already declared to this delivery.' });
     }
 
     const { id } = await DeliveryProblem.create(req.body);
