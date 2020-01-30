@@ -1,16 +1,12 @@
 import * as Yup from 'yup';
-import { format, parseISO } from 'date-fns';
-import pt from 'date-fns/locale/pt';
-import { resolve } from 'path';
 
 import Delivery from '../models/Delivery';
 import Recipient from '../models/Recipient';
 import Deliveryman from '../models/Deliveryman';
 import File from '../models/File';
 
-import Mail from '../../lib/Mail';
-
-const folder = resolve(__dirname, '..', 'views', 'emails', 'images');
+import DeliveryConfirmationMail from '../jobs/DeliveryConfirmationMail';
+import Queue from '../../lib/Queue';
 
 class DeliveryController {
   async index(req, res) {
@@ -103,34 +99,10 @@ class DeliveryController {
     if (recipient && deliveryman && signature) {
       delivery = await Delivery.create(req.body);
 
-      await Mail.sendMail({
-        to: `${deliveryman.name} <${deliveryman.email}>`,
-        subject: `O produto ${product} já está disponível para retirada.`,
-        template: 'confirmation',
-        context: {
-          deliveryman: deliveryman.name,
-          product,
-          started: format(delivery.createdAt, "dd' de 'MMMM' de 'yyyy", {
-            locale: pt,
-          }),
-        },
-        attachments: [
-          {
-            filename: 'logo.png',
-            path: `${folder}/logo.png`,
-            cid: 'logo',
-          },
-          {
-            filename: 'element1.png',
-            path: `${folder}/element1.png`,
-            cid: 'element1',
-          },
-          {
-            filename: 'footer_image.png',
-            path: `${folder}/footer_image.png`,
-            cid: 'footer_image',
-          },
-        ],
+      await Queue.add(DeliveryConfirmationMail.key, {
+        deliveryman,
+        product,
+        delivery,
       });
     }
     return res.json(delivery);
