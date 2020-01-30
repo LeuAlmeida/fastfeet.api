@@ -157,58 +157,6 @@ class DeliveryController {
       return res.status(400).json({ error: 'Delivery does not found' });
     }
 
-    /**
-     * Delivery set as canceled
-     */
-
-    const { cancel } = req.query;
-
-    if (cancel) {
-      let canceledDelivery;
-
-      if (cancel === 'true') {
-        canceledDelivery = await delivery.update({
-          canceled_at: new Date(),
-        });
-      }
-
-      if (cancel === 'false') {
-        canceledDelivery = await delivery.update({
-          canceled_at: null,
-        });
-      }
-
-      return res.json(canceledDelivery);
-    }
-
-    /**
-     * Delivery set as finished
-     */
-
-    const { end } = req.query;
-
-    if (end) {
-      let endedDelivery;
-
-      if (end === 'true') {
-        endedDelivery = await delivery.update({
-          end_date: new Date(),
-        });
-      }
-
-      if (end === 'false') {
-        endedDelivery = await delivery.update({
-          end_date: null,
-        });
-      }
-
-      return res.json(endedDelivery);
-    }
-
-    /**
-     * Delivery update
-     */
-
     const { recipient_id, deliveryman_id, signature_id } = req.body;
 
     const recipient = await Recipient.findOne({
