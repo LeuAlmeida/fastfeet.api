@@ -4,6 +4,7 @@ import { startOfDay, isBefore } from 'date-fns';
 
 import Delivery from '../models/Delivery';
 import Deliveryman from '../models/Deliveryman';
+import DeliveryProblem from '../models/DeliveryProblem';
 import File from '../models/File';
 
 class DeliveryStatusController {
@@ -16,14 +17,29 @@ class DeliveryStatusController {
       return res.status(400).json({ error: 'Deliveryman does not found. ' });
     }
 
-    const { page = 1 } = req.query;
+    const { page = 1, end } = req.query;
+
+    if (end) {
+      const deliveries = await Delivery.findAll({
+        where: {
+          deliveryman_id: id,
+          end_date: {
+            [Op.not]: null,
+          },
+          canceled_at: null,
+        },
+        attributes: ['id', 'product', 'start_date', 'end_date', 'recipient_id'],
+        limit: 10,
+        offset: (page - 1) * 10,
+      });
+
+      return res.json(deliveries);
+    }
 
     const deliveries = await Delivery.findAll({
       where: {
         deliveryman_id: id,
-        end_date: {
-          [Op.not]: null,
-        },
+        end_date: null,
         canceled_at: null,
       },
       attributes: ['id', 'product', 'start_date', 'end_date', 'recipient_id'],
@@ -102,6 +118,12 @@ class DeliveryStatusController {
     const { end_date } = req.query;
 
     if (end_date) {
+      if (!req.file) {
+        return res
+          .status(400)
+          .json({ error: 'You need to upload a file to end this delivery. ' });
+      }
+
       const { originalname: name, filename: path } = req.file;
 
       const { id: signature_id } = await File.create({
@@ -136,6 +158,62 @@ class DeliveryStatusController {
       product,
       recipient_id,
       start_date,
+    });
+  }
+
+  async store(req, res) {
+    const schema = Yup.object().shape({
+      canceled_at: Yup.date(),
+    });
+
+    if (!(await schema.isValid(req.body))) {
+      return res.status(400).json({ error: 'Validation fails.' });
+    }
+
+    const { id } = req.params;
+
+    const problem = await DeliveryProblem.findByPk(id);
+
+    if (!problem) {
+      return res
+        .status(400)
+        .json({ error: 'Delivery problem does not found.' });
+    }
+
+    const { delivery_id } = problem;
+
+    const delivery = await Delivery.findOne({
+      id: delivery_id,
+    });
+
+    if (!delivery) {
+      return res
+        .status(400)
+        .json({ error: 'A delivery referred to this problem are not found' });
+    }
+
+    const { canceled_at } = req.body;
+
+    const {
+      product,
+      start_date,
+      end_date,
+      recipient_id,
+      deliveryman_id,
+    } = await delivery.update({
+      canceled_at: canceled_at || new Date(),
+      end_date: new Date(),
+    });
+
+    return res.json({
+      id,
+      delivery_id,
+      product,
+      start_date,
+      canceled_at,
+      end_date,
+      recipient_id,
+      deliveryman_id,
     });
   }
 }
