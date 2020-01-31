@@ -32,7 +32,7 @@
               <td width="100%"
                 style="color: #292929; font-family: Helvetica, Arial, sans-serif, 'Varela Round'; font-weight: 400; vertical-align: top; font-size: 24px; text-align: center; line-height: 16pxpx;"
                 class="fullCenter varela">
-                Olá, VARIAVELDENOME!
+                Olá, {{deliveryman}}!
               </td>
             </tr>
             <tr>
@@ -52,7 +52,7 @@
               <td width="100%"
                 style="color: #292929; text-transform: uppercase; font-family: Helvetica, Arial, sans-serif, 'Varela Round'; font-weight: 400; vertical-align: top; font-size: 16px; text-align: center; line-height: 26px;"
                 class="fullCenter varela">
-                Deu ruim!
+                A entrega do produto {{product}} foi cancelada. Veja mais informações abaixo.
               </td>
             </tr>
 
@@ -60,6 +60,34 @@
               <td width="100%" height="30" style="font-size: 1px; line-height: 1px;">&nbsp;</td>
             </tr>
             <tr>
+              <td width="100%" height="4" bgcolor="#9272ec" style="font-size: 1px; line-height: 1px;">&nbsp;</td>
+            </tr>
+            <tr>
+              <td width="100%" height="30" style="font-size: 1px; line-height: 1px;">&nbsp;</td>
+            </tr>
+
+            <tr>
+              <td width="100%" height="30" style="font-size: 1px; line-height: 1px;">&nbsp;</td>
+            </tr>
+            <tr>
+              <td width="100%"
+                style="color: #292929; font-family: Helvetica, Arial, sans-serif, 'Varela Round'; font-weight: 400; vertical-align: top; font-size: 15px; text-align: center; line-height: 20px;"
+                class="fullCenter varela">
+
+                <p>
+                  <span style="color: #281069; font-weight: 600;">Problema:</span><br />
+                  {{ problem }}
+                </p>
+
+                <br/>
+
+                <p>
+                  <span style="color: #281069; font-weight: 600;">Data de cancelamento:</span><br />
+                  {{ canceled_at }}
+                </p>
+
+              </td>
+            </tr>
               <td valign="middle" align="center" width="100%" class="fullCenter imgFull img306"
                 style="line-height: 1px;">
                 <a href="#" style="text-decoration: none;">
@@ -75,7 +103,7 @@
                 style="color: #292929; font-family: Helvetica, Arial, sans-serif, 'Varela Round'; font-weight: 400; vertical-align: top; font-size: 12px; text-align: center; line-height: 18px;"
                 class="fullCenter varela">
                 <span style="text-decoration: none; color: #292929;">
-                  São Paulo, ...
+                  São Paulo, {{ actualDate }}
                 </span>
               </td>
             </tr>
