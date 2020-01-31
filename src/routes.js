@@ -18,41 +18,56 @@ const upload = multer(multerConfig);
 
 routes.post('/login', SessionController.store);
 
+// Route to a deliveryman search for available and ended deliveries to him
 routes.get('/deliveryman/:id/deliveries', DeliveryStatusController.index);
+
+// Route to a deliveryman register a delivery as finished or started
 routes.put(
   '/deliveryman/:id/deliveries',
   upload.single('file'),
   DeliveryStatusController.update
 );
 
+// Route to a deliveryman register a problem
+routes.post('/delivery/:delivery_id/problems', DeliveryProblemController.store);
+
+// Authentication middleware
 routes.use(authMiddleware);
 
+// Upload file route
 routes.post('/files', upload.single('file'), FileController.store);
 
+// Admin user routes
 routes.post('/users', UserController.store);
 routes.get('/users', UserController.index);
 routes.put('/users/:id', UserController.update);
 routes.delete('/users/:id', UserController.delete);
 
+// Recipients routes
 routes.post('/recipients', RecipientController.store);
 routes.get('/recipients', RecipientController.index);
 routes.put('/recipients/:id', RecipientController.update);
 routes.delete('/recipients/:id', RecipientController.delete);
 
+// Deliveryman routes
 routes.post('/deliveryman', DeliverymanController.store);
 routes.get('/deliveryman', DeliverymanController.index);
 routes.put('/deliveryman/:id', DeliverymanController.update);
 routes.delete('/deliveryman/:id', DeliverymanController.delete);
 
+// Delivery routes
 routes.post('/delivery', DeliveryController.store);
 routes.get('/delivery', DeliveryController.index);
 routes.put('/delivery/:id', DeliveryController.update);
 routes.delete('/delivery/:id', DeliveryController.delete);
 
-routes.get('/delivery/problems', DeliveryProblemController.index); // OK
-routes.post('/delivery/problems', DeliveryProblemController.store); // OK
-routes.get('/delivery/:id/problems', DeliveryProblemController.index); // OK
-routes.put('/delivery/:id/problems', DeliveryProblemController.update);
-routes.delete('/delivery/:id/problems', DeliveryProblemController.delete);
+// Delivery problems routes
+routes.get('/delivery/problems', DeliveryProblemController.index);
+routes.get('/delivery/:id/problems', DeliveryProblemController.index);
+routes.put('/delivery/problems/:id', DeliveryProblemController.update);
+routes.delete('/delivery/problems/:id', DeliveryProblemController.delete);
+
+// Cancel delivery based in a problem
+routes.post('/problems/:id/cancel-delivery', DeliveryStatusController.store);
 
 export default routes;
