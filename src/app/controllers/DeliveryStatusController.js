@@ -1,6 +1,6 @@
 import { Op } from 'sequelize';
 import * as Yup from 'yup';
-import { startOfDay, isBefore } from 'date-fns';
+import { startOfDay, isBefore, getHours, parseISO } from 'date-fns';
 
 import Delivery from '../models/Delivery';
 import Deliveryman from '../models/Deliveryman';
@@ -152,6 +152,18 @@ class DeliveryStatusController {
      */
 
     const { start_date } = req.body;
+
+    if (!start_date && !end_date) {
+      return res.status(400).json({ error: 'No params are declared.' });
+    }
+
+    const startTime = getHours(parseISO(start_date));
+
+    if (startTime < 8 || startTime >= 18) {
+      return res.status(400).json({
+        error: 'Delivery pickups are available only between 8am and 6pm',
+      });
+    }
 
     const { product, recipient_id } = await delivery.update({
       start_date,
