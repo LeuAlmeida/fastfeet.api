@@ -35,7 +35,6 @@ class DeliveryProblemController {
 
   async store(req, res) {
     const schema = Yup.object().shape({
-      delivery_id: Yup.number().required(),
       description: Yup.string().required(),
     });
 
@@ -43,7 +42,9 @@ class DeliveryProblemController {
       return res.status(400).json({ error: 'Validation fails.' });
     }
 
-    const { delivery_id, description } = req.body;
+    const { delivery_id } = req.params;
+
+    const { description } = req.body;
 
     /**
      * Delivery validator
@@ -59,21 +60,65 @@ class DeliveryProblemController {
       return res.status(400).json({ error: 'Delivery does not found.' });
     }
 
-    const { id } = await DeliveryProblem.create(req.body);
+    const deliveryProblem = await DeliveryProblem.create({
+      delivery_id,
+      description,
+    });
 
     return res.json({
-      id,
+      id: deliveryProblem.id,
       delivery_id,
       description,
     });
   }
 
   async update(req, res) {
-    return res.json({ ok: true });
+    const schema = Yup.object().shape({
+      delivery_id: Yup.number(),
+      description: Yup.string(),
+    });
+
+    if (!(await schema.isValid(req.body))) {
+      return res.status(400).json({ error: 'Validation fails.' });
+    }
+
+    const { id } = req.params;
+
+    const problem = await DeliveryProblem.findByPk(id);
+
+    if (!problem) {
+      return res
+        .status(400)
+        .json({ error: 'Delivery problem does not found.' });
+    }
+
+    const { description, delivery_id } = await problem.update(req.body);
+
+    return res.json({
+      id,
+      description,
+      delivery_id,
+    });
   }
 
   async delete(req, res) {
-    return res.json({ ok: true });
+    const { id } = req.params;
+
+    const problem = await DeliveryProblem.findByPk(id);
+
+    if (!problem) {
+      return res
+        .status(400)
+        .json({ error: 'Delivery problem does not found.' });
+    }
+
+    await problem.destroy();
+
+    const allProblems = await DeliveryProblem.findAll({
+      attributes: ['id', 'description', 'delivery_id'],
+    });
+
+    return res.json(allProblems);
   }
 }
 
