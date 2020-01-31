@@ -7,6 +7,9 @@ import Deliveryman from '../models/Deliveryman';
 import DeliveryProblem from '../models/DeliveryProblem';
 import File from '../models/File';
 
+import DeliveryCancellationMail from '../jobs/DeliveryCancellationMail';
+import Queue from '../../lib/Queue';
+
 class DeliveryStatusController {
   async index(req, res) {
     const { id } = req.params;
@@ -203,6 +206,20 @@ class DeliveryStatusController {
     } = await delivery.update({
       canceled_at: canceled_at || new Date(),
       end_date: new Date(),
+    });
+
+    const deliveryman = await Deliveryman.findOne({
+      where: {
+        id: deliveryman_id,
+      },
+    });
+
+    await Queue.add(DeliveryCancellationMail.key, {
+      deliveryman,
+      product,
+      delivery,
+      problem: problem.description,
+      canceled_at: canceled_at || new Date(),
     });
 
     return res.json({
