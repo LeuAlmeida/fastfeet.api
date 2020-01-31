@@ -67,7 +67,7 @@ Abaixo estão descritas as funcionalidades que você deve adicionar em sua aplic
 
 [X] Esse funcionalidade deve retornar as encomendas atribuidas à ele, que **não estejam entregues ou canceladas**;
 
-[X] Crie também uma rota para listagem de todas as entregas realizadas por um entregador, com base em seu ID de cadastro;
+[X] Permita também que ele liste apenas as encomendas que já foram **entregues** por ele, com base em seu ID de cadastro;
 
 Exemplo de requisição: `GET https://fastfeet.com/deliveryman/1/deliveries`
 
@@ -94,13 +94,13 @@ A tabela `delivery_problems` deve conter os seguintes campos:
 
 Exemplo de requisição: `GET https://fastfeet.com/delivery/2/problems`
 
-[?] Crie uma rota para o entregador cadastrar problemas na entrega apenas informando seu ID de cadastro (ID do banco de dados);
+[X] Crie uma rota para o entregador cadastrar problemas na entrega apenas informando seu ID de cadastro (ID da encomenda no banco de dados);
 
 Exemplo de requisição: `POST https://fastfeet.com/delivery/3/problems`
 
 [X] Crie uma rota para a distribuidora listar todas as entregas com algum problema;
 
-[ ] Crie uma rota para a distribuidora cancelar uma entrega baseado no ID do problema. Esse cancelamento pode acontecer devido a gravidade do problema da entrega, por exemplo, em caso de perda da encomenda.
+[X] Crie uma rota para a distribuidora cancelar uma entrega baseado no ID do problema. Esse cancelamento pode acontecer devido a gravidade do problema da entrega, por exemplo, em caso de perda da encomenda.
 
 Exemplo de requisição: `POST https://fastfeet.com/problem/1/cancel-delivery`
 
