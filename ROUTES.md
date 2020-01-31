@@ -2,11 +2,7 @@
 <img alt="FastFeet" src="logo/fastfeet-api.png" />
 </p>
 
-<h1 align="center">FastFeet API from Rocketseat GoStack</h1>
-
-<blockquote align="center">
-:zap: API Routes
-</blockquote>
+<h1 align="center">Routes from FastFeet API</h1>
 
 <p align="center">
   <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/LeuAlmeida/fastfeet.api?color=%2304D361">
