@@ -21,7 +21,10 @@ class DeliveryStatusController {
     const deliveries = await Delivery.findAll({
       where: {
         deliveryman_id: id,
-        [Op.or]: [{ canceled_at: null }, { end_date: null }],
+        end_date: {
+          [Op.not]: null,
+        },
+        canceled_at: null,
       },
       attributes: ['id', 'product', 'start_date', 'end_date', 'recipient_id'],
       limit: 10,
