@@ -14,14 +14,14 @@ class DeliveryCancellationMail {
     const { deliveryman, product, delivery, problem, canceled_at } = data;
 
     await Mail.sendMail({
-      to: `${`Leonardo Almeida`} <${`leo@webid.net.br`}>`,
+      to: `${deliveryman.name} <${deliveryman.email}>`,
       subject: `A entrega do produto ${product} foi cancelada.`,
       template: 'cancellation',
       context: {
         deliveryman: deliveryman.name,
         product,
         problem,
-        actualDate: format(parseISO(new Date()), "dd' de 'MMMM' de 'yyyy", {
+        actualDate: format(new Date(), "dd' de 'MMMM' de 'yyyy", {
           locale: pt,
         }),
         canceled_at: format(parseISO(canceled_at), "dd' de 'MMMM' de 'yyyy", {
@@ -42,9 +42,9 @@ class DeliveryCancellationMail {
           cid: 'logo',
         },
         {
-          filename: 'element1.png',
-          path: `${folder}/element1.png`,
-          cid: 'element1',
+          filename: 'element2.png',
+          path: `${folder}/element2.png`,
+          cid: 'element2',
         },
         {
           filename: 'footer_image.png',
