@@ -159,19 +159,23 @@ class DeliveryStatusController {
 
     const startTime = getHours(parseISO(start_date));
 
+    console.log(startTime);
+
     if (startTime < 8 || startTime >= 18) {
       return res.status(400).json({
         error: 'Delivery pickups are available only between 8am and 6pm',
       });
     }
 
-    const { product, recipient_id } = await delivery.update({
+    const { product, recipient_id, canceled_at } = await delivery.update({
       start_date,
     });
 
     return res.json({
       product,
       recipient_id,
+      canceled_at,
+      end_date: delivery.end_date,
       start_date,
     });
   }
