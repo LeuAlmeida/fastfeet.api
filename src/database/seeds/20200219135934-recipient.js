@@ -4,7 +4,7 @@ module.exports = {
       'recipients',
       [
         {
-          id: 'John Doe',
+          id: 1,
           name: 'Leonardo Almeida',
           address: 'Rua do Sacramento',
           number: 230,
