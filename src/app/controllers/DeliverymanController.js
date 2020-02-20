@@ -42,6 +42,25 @@ class DeliverymanController {
   }
 
   async index(req, res) {
+    const { q } = req.query;
+
+    if (q) {
+      const deliveryman = await Deliveryman.findAll({
+        where: {
+          name: {
+            [Op.iLike]: `%${q}%`,
+          },
+        },
+        attributes: ['id', 'name', 'email', 'avatar_id'],
+      });
+
+      if (!deliveryman) {
+        return res.status(400).json({ error: 'Deliveryman does not found.' });
+      }
+
+      return res.json(deliveryman);
+    }
+
     const deliverymans = await Deliveryman.findAll({
       attributes: ['id', 'name', 'email', 'avatar_id'],
     });
