@@ -1,4 +1,5 @@
 import * as Yup from 'yup';
+import { Op } from 'sequelize';
 
 import Delivery from '../models/Delivery';
 import Recipient from '../models/Recipient';
@@ -10,11 +11,15 @@ import Queue from '../../lib/Queue';
 
 class DeliveryController {
   async index(req, res) {
-    const { id, page = 1 } = req.query;
+    const { q, id, page = 1 } = req.query;
 
-    if (id) {
-      const delivery = await Delivery.findOne({
-        where: { id },
+    if (q) {
+      const deliveries = await Delivery.findAll({
+        where: {
+          product: {
+            [Op.iLike]: `%${q}%`,
+          },
+        },
         attributes: [
           'id',
           'product',
@@ -27,14 +32,14 @@ class DeliveryController {
         ],
       });
 
-      if (!delivery) {
-        return res.status(400).json({ error: 'Delivery does not found.' });
+      if (!deliveries) {
+        return res.status(400).json({ error: 'Deliveries does not found.' });
       }
 
-      return res.json(delivery);
+      return res.json(deliveries);
     }
 
-    const deliveries = await Delivery.findAndCountAll({
+    const deliveries = await Delivery.findAll({
       attributes: [
         'id',
         'product',
