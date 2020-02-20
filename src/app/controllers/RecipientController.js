@@ -1,4 +1,5 @@
 import * as Yup from 'yup';
+import { Op } from 'sequelize';
 
 import Recipient from '../models/Recipient';
 
@@ -41,6 +42,34 @@ class RecipientController {
   }
 
   async index(req, res) {
+    const { q } = req.query;
+
+    if (q) {
+      const recipient = await Recipient.findAll({
+        where: {
+          name: {
+            [Op.iLike]: `%${q}%`,
+          },
+        },
+        attributes: [
+          'id',
+          'name',
+          'address',
+          'number',
+          'complement',
+          'state',
+          'city',
+          'cep',
+        ],
+      });
+
+      if (!recipient) {
+        return res.status(400).json({ error: 'Recipient does not found.' });
+      }
+
+      return res.json(recipient);
+    }
+
     const recipients = await Recipient.findAll({
       attributes: [
         'id',
