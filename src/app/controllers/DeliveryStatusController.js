@@ -137,6 +137,7 @@ class DeliveryStatusController {
       const { product, recipient_id } = await delivery.update({
         end_date,
         signature_id,
+        status: 'DELIVERED',
       });
 
       return res.json({
@@ -169,6 +170,7 @@ class DeliveryStatusController {
 
     const { product, recipient_id, canceled_at } = await delivery.update({
       start_date,
+      status: 'WITHDRAWN',
     });
 
     return res.json({
@@ -222,6 +224,7 @@ class DeliveryStatusController {
     } = await delivery.update({
       canceled_at: canceled_at || new Date(),
       end_date: new Date(),
+      status: 'CANCELED',
     });
 
     const deliveryman = await Deliveryman.findOne({
