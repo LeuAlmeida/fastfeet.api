@@ -11,24 +11,52 @@ import Queue from '../../lib/Queue';
 
 class DeliveryController {
   async index(req, res) {
-    const { q, id, page = 1 } = req.query;
+    const { productFound, page = 1 } = req.query;
 
-    if (q) {
+    if (productFound) {
       const deliveries = await Delivery.findAll({
         where: {
           product: {
-            [Op.iLike]: `%${q}%`,
+            [Op.iLike]: `%${productFound}%`,
           },
         },
         attributes: [
           'id',
           'product',
+          'status',
           'canceled_at',
           'start_date',
           'end_date',
           'recipient_id',
           'deliveryman_id',
           'signature_id',
+        ],
+        include: [
+          {
+            model: Recipient,
+            as: 'recipient',
+            paranoid: false,
+            attributes: [
+              'id',
+              'name',
+              'address',
+              'number',
+              'complement',
+              'city',
+              'state',
+              'cep',
+            ],
+          },
+          {
+            model: Deliveryman,
+            as: 'deliveryman',
+            attributes: ['id', 'name'],
+          },
+          {
+            model: File,
+            as: 'signature',
+            attributes: ['id', 'url', 'path'],
+          },
         ],
       });
 
@@ -43,12 +71,40 @@ class DeliveryController {
       attributes: [
         'id',
         'product',
+        'status',
         'canceled_at',
         'start_date',
         'end_date',
         'recipient_id',
         'deliveryman_id',
         'signature_id',
+      ],
+      include: [
+        {
+          model: Recipient,
+          as: 'recipient',
+          paranoid: false,
+          attributes: [
+            'id',
+            'name',
+            'address',
+            'number',
+            'complement',
+            'city',
+            'state',
+            'cep',
+          ],
+        },
+        {
+          model: Deliveryman,
+          as: 'deliveryman',
+          attributes: ['id', 'name'],
+        },
+        {
+          model: File,
+          as: 'signature',
+          attributes: ['id', 'url', 'path'],
+        },
       ],
       limit: 10,
       offset: (page - 1) * 10,
@@ -104,7 +160,7 @@ class DeliveryController {
      */
 
     try {
-      const delivery = await Delivery.create(req.body);
+      const delivery = await Delivery.create(req.body, { status: 'PENDING' });
 
       await Queue.add(DeliveryConfirmationMail.key, {
         deliveryman,
