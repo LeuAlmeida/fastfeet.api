@@ -11,7 +11,65 @@ import Queue from '../../lib/Queue';
 
 class DeliveryController {
   async index(req, res) {
-    const { productFound, page = 1 } = req.query;
+    const { productFound, deliveryId, page = 1 } = req.query;
+
+    if (productFound && deliveryId) {
+      return res
+        .status(401)
+        .json({ error: 'You can use only 1 param to filter deliveries.' });
+    }
+
+    if (deliveryId) {
+      const deliveries = await Delivery.findOne({
+        where: {
+          id: deliveryId,
+        },
+        attributes: [
+          'id',
+          'product',
+          'status',
+          'canceled_at',
+          'start_date',
+          'end_date',
+          'recipient_id',
+          'deliveryman_id',
+          'signature_id',
+        ],
+        include: [
+          {
+            model: Recipient,
+            as: 'recipient',
+            paranoid: false,
+            attributes: [
+              'id',
+              'name',
+              'address',
+              'number',
+              'complement',
+              'city',
+              'state',
+              'cep',
+            ],
+          },
+          {
+            model: Deliveryman,
+            as: 'deliveryman',
+            attributes: ['id', 'name'],
+          },
+          {
+            model: File,
+            as: 'signature',
+            attributes: ['id', 'url', 'path'],
+          },
+        ],
+      });
+
+      if (!deliveries) {
+        return res.status(400).json({ error: 'Deliveries does not found.' });
+      }
+
+      return res.json(deliveries);
+    }
 
     if (productFound) {
       const deliveries = await Delivery.findAll({
