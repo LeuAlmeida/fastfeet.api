@@ -297,15 +297,18 @@ class DeliveryController {
     /**
      * Signature verification
      */
+    let signature = null;
 
-    const signature = await File.findOne({
-      where: {
-        id: signature_id,
-      },
-    });
+    if (signature_id) {
+      signature = await File.findOne({
+        where: {
+          id: signature_id,
+        },
+      });
 
-    if (!signature) {
-      return res.status(400).json({ error: 'Signature does not found.' });
+      if (!signature) {
+        return res.status(400).json({ error: 'Signature does not found.' });
+      }
     }
 
     /**
