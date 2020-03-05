@@ -58,6 +58,8 @@ class DeliveryController {
             attributes: ['id', 'url', 'path'],
           },
         ],
+        limit: 5,
+        offset: (page - 1) * 5,
       });
 
       if (!deliveries) {
@@ -106,8 +108,8 @@ class DeliveryController {
           attributes: ['id', 'url', 'path'],
         },
       ],
-      limit: 10,
-      offset: (page - 1) * 10,
+      limit: 5,
+      offset: (page - 1) * 5,
     });
 
     return res.json(deliveries);
