@@ -160,7 +160,12 @@ class DeliveryController {
      */
 
     try {
-      const delivery = await Delivery.create(req.body, { status: 'PENDING' });
+      const delivery = await Delivery.create({
+        product,
+        recipient_id,
+        deliveryman_id,
+        status: 'PENDING',
+      });
 
       await Queue.add(DeliveryConfirmationMail.key, {
         deliveryman,
