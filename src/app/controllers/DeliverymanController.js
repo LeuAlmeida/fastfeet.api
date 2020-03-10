@@ -63,6 +63,11 @@ class DeliverymanController {
 
     const deliverymans = await Deliveryman.findAll({
       attributes: ['id', 'name', 'email', 'avatar_id'],
+      include: {
+        model: File,
+        as: 'avatar',
+        attributes: ['name', 'path', 'url'],
+      },
     });
 
     return res.json(deliverymans);
