@@ -44,7 +44,7 @@ class DeliverymanController {
   }
 
   async index(req, res) {
-    const { q } = req.query;
+    const { q, deliverymanId } = req.query;
 
     if (q) {
       const deliveryman = await Deliveryman.findAll({
@@ -54,6 +54,31 @@ class DeliverymanController {
           },
         },
         attributes: ['id', 'name', 'email', 'avatar_id'],
+        include: {
+          model: File,
+          as: 'avatar',
+          attributes: ['name', 'path', 'url'],
+        },
+      });
+
+      if (!deliveryman) {
+        return res.status(400).json({ error: 'Deliveryman does not found.' });
+      }
+
+      return res.json(deliveryman);
+    }
+
+    if (deliverymanId) {
+      const deliveryman = await Deliveryman.findOne({
+        where: {
+          id: deliverymanId,
+        },
+        attributes: ['id', 'name', 'email', 'avatar_id'],
+        include: {
+          model: File,
+          as: 'avatar',
+          attributes: ['name', 'path', 'url'],
+        },
       });
 
       if (!deliveryman) {
