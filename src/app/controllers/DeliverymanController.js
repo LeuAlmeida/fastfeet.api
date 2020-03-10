@@ -20,12 +20,14 @@ class DeliverymanController {
 
     const { avatar_id, email } = req.body;
 
-    const file = await File.findOne({
-      where: { id: avatar_id },
-    });
+    if (avatar_id) {
+      const file = await File.findOne({
+        where: { id: avatar_id },
+      });
 
-    if (!file) {
-      return res.status(401).json({ error: 'File does not found.' });
+      if (!file) {
+        return res.status(401).json({ error: 'File does not found.' });
+      }
     }
 
     const deliverymanExists = await Deliveryman.findOne({
