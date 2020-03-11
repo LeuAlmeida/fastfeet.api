@@ -15,7 +15,7 @@ module.exports = {
           key: 'id',
         },
         onUpdate: 'CASCADE',
-        onDelete: 'CASCADE',
+        onDelete: 'NO ACTION',
       },
       deliveryman_id: {
         type: Sequelize.INTEGER,
@@ -25,7 +25,7 @@ module.exports = {
           key: 'id',
         },
         onUpdate: 'CASCADE',
-        onDelete: 'CASCADE',
+        onDelete: 'NO ACTION',
       },
       signature_id: {
         type: Sequelize.INTEGER,
@@ -34,7 +34,7 @@ module.exports = {
           key: 'id',
         },
         onUpdate: 'CASCADE',
-        onDelete: 'CASCADE',
+        onDelete: 'NO ACTION',
         allowNull: true,
       },
       product: {
