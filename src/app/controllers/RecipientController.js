@@ -12,7 +12,7 @@ class RecipientController {
       complement: Yup.string(),
       state: Yup.string().required(),
       city: Yup.string().required(),
-      cep: Yup.number().required(),
+      cep: Yup.string().required(),
     });
 
     if (!(await schema.isValid(req.body))) {
@@ -42,7 +42,33 @@ class RecipientController {
   }
 
   async index(req, res) {
-    const { q } = req.query;
+    const { q, recipientId } = req.query;
+
+    if (recipientId) {
+      const recipient = await Recipient.findOne({
+        where: {
+          id: recipientId,
+        },
+        attributes: [
+          'id',
+          'name',
+          'address',
+          'number',
+          'complement',
+          'state',
+          'city',
+          'cep',
+        ],
+      });
+
+      if (!recipient) {
+        return res.status(400).json({ error: 'Recipient does not found.' });
+      }
+
+      return res.json({
+        recipient,
+      });
+    }
 
     if (q) {
       const recipient = await Recipient.findAll({
@@ -94,7 +120,7 @@ class RecipientController {
       complement: Yup.string(),
       state: Yup.string().required(),
       city: Yup.string().required(),
-      cep: Yup.number().required(),
+      cep: Yup.string().required(),
     });
 
     if (!(await schema.isValid(req.body))) {
