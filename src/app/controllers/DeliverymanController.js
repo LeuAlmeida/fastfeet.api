@@ -53,6 +53,7 @@ class DeliverymanController {
             [Op.iLike]: `%${q}%`,
           },
         },
+        order: [['id', 'DESC']],
         attributes: ['id', 'name', 'email', 'avatar_id'],
         include: {
           model: File,
@@ -73,6 +74,7 @@ class DeliverymanController {
         where: {
           id: deliverymanId,
         },
+        order: [['id', 'DESC']],
         attributes: ['id', 'name', 'email', 'avatar_id'],
         include: {
           model: File,
@@ -90,6 +92,7 @@ class DeliverymanController {
 
     const deliverymans = await Deliveryman.findAll({
       attributes: ['id', 'name', 'email', 'avatar_id'],
+      order: [['id', 'DESC']],
       include: {
         model: File,
         as: 'avatar',
