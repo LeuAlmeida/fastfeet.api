@@ -16,6 +16,7 @@ class DeliveryProblemController {
         where: {
           delivery_id: id,
         },
+        order: [['id', 'DESC']],
         attributes: ['id', 'description'],
       });
 
@@ -28,6 +29,7 @@ class DeliveryProblemController {
 
     const problems = await DeliveryProblem.findAll({
       attributes: ['id', 'description', 'delivery_id'],
+      order: [['id', 'DESC']],
     });
 
     return res.json(problems);
