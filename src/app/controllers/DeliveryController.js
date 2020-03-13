@@ -24,6 +24,7 @@ class DeliveryController {
         where: {
           id: deliveryId,
         },
+        order: [['id', 'DESC']],
         attributes: [
           'id',
           'product',
@@ -94,6 +95,7 @@ class DeliveryController {
           'deliveryman_id',
           'signature_id',
         ],
+        order: [['id', 'DESC']],
         include: [
           {
             model: Recipient,
@@ -149,6 +151,7 @@ class DeliveryController {
         'deliveryman_id',
         'signature_id',
       ],
+      order: [['id', 'DESC']],
       include: [
         {
           model: Recipient,
