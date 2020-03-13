@@ -49,6 +49,7 @@ class RecipientController {
         where: {
           id: recipientId,
         },
+        order: [['id', 'DESC']],
         attributes: [
           'id',
           'name',
@@ -77,6 +78,7 @@ class RecipientController {
             [Op.iLike]: `%${q}%`,
           },
         },
+        order: [['id', 'DESC']],
         attributes: [
           'id',
           'name',
