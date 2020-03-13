@@ -223,7 +223,7 @@ class DeliveryStatusController {
       deliveryman_id,
     } = await delivery.update({
       canceled_at: canceled_at || new Date(),
-      end_date: new Date(),
+      end_date: null,
       status: 'CANCELED',
     });
 
