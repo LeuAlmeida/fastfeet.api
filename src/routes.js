@@ -21,6 +21,9 @@ routes.post('/login', SessionController.store);
 // Route to a deliveryman search for available and ended deliveries to him
 routes.get('/deliveryman/:id/deliveries', DeliveryStatusController.index);
 
+// Route to list deliverymen and each deliveryman
+routes.get('/deliveryman', DeliverymanController.index);
+
 // Route to a deliveryman register a delivery as finished or started
 routes.put(
   '/deliveryman/:id/deliveries',
@@ -51,7 +54,6 @@ routes.delete('/recipients/:id', RecipientController.delete);
 
 // Deliveryman routes
 routes.post('/deliveryman', DeliverymanController.store);
-routes.get('/deliveryman', DeliverymanController.index);
 routes.put('/deliveryman/:id', DeliverymanController.update);
 routes.delete('/deliveryman/:id', DeliverymanController.delete);
 
