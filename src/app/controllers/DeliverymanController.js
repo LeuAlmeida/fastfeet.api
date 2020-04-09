@@ -75,7 +75,7 @@ class DeliverymanController {
           id: deliverymanId,
         },
         order: [['id', 'DESC']],
-        attributes: ['id', 'name', 'email', 'avatar_id'],
+        attributes: ['id', 'name', 'email', 'avatar_id', 'created_at'],
         include: {
           model: File,
           as: 'avatar',
