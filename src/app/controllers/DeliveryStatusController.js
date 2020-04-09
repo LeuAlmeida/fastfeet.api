@@ -32,7 +32,14 @@ class DeliveryStatusController {
           },
           canceled_at: null,
         },
-        attributes: ['id', 'product', 'start_date', 'end_date', 'recipient_id'],
+        attributes: [
+          'id',
+          'product',
+          'start_date',
+          'end_date',
+          'recipient_id',
+          'status',
+        ],
         include: {
           model: Recipient,
           as: 'recipient',
@@ -61,7 +68,14 @@ class DeliveryStatusController {
         end_date: null,
         canceled_at: null,
       },
-      attributes: ['id', 'product', 'start_date', 'end_date', 'recipient_id'],
+      attributes: [
+        'id',
+        'product',
+        'start_date',
+        'end_date',
+        'recipient_id',
+        'status',
+      ],
       include: {
         model: Recipient,
         as: 'recipient',
