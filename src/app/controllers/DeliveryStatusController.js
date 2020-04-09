@@ -3,6 +3,7 @@ import * as Yup from 'yup';
 import { startOfDay, isBefore, getHours, parseISO } from 'date-fns';
 
 import Delivery from '../models/Delivery';
+import Recipient from '../models/Recipient';
 import Deliveryman from '../models/Deliveryman';
 import DeliveryProblem from '../models/DeliveryProblem';
 import File from '../models/File';
@@ -32,6 +33,21 @@ class DeliveryStatusController {
           canceled_at: null,
         },
         attributes: ['id', 'product', 'start_date', 'end_date', 'recipient_id'],
+        include: {
+          model: Recipient,
+          as: 'recipient',
+          paranoid: false,
+          attributes: [
+            'id',
+            'name',
+            'address',
+            'number',
+            'complement',
+            'city',
+            'state',
+            'cep',
+          ],
+        },
         limit: 10,
         offset: (page - 1) * 10,
       });
@@ -46,6 +62,21 @@ class DeliveryStatusController {
         canceled_at: null,
       },
       attributes: ['id', 'product', 'start_date', 'end_date', 'recipient_id'],
+      include: {
+        model: Recipient,
+        as: 'recipient',
+        paranoid: false,
+        attributes: [
+          'id',
+          'name',
+          'address',
+          'number',
+          'complement',
+          'city',
+          'state',
+          'cep',
+        ],
+      },
       limit: 10,
       offset: (page - 1) * 10,
     });
