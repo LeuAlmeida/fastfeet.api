@@ -41,6 +41,9 @@ routes.put(
 // Route to a deliveryman register a problem
 routes.post('/delivery/:delivery_id/problems', DeliveryProblemController.store);
 
+// Route to a deliveryman list a delivery problems
+routes.get('/delivery/:id/problems', DeliveryProblemController.index);
+
 // Upload file route
 routes.post('/files', upload.single('file'), FileController.store);
 
@@ -72,7 +75,6 @@ routes.delete('/delivery/:id', DeliveryController.delete);
 
 // Delivery problems routes
 routes.get('/delivery/problems', DeliveryProblemController.index);
-routes.get('/delivery/:id/problems', DeliveryProblemController.index);
 routes.put('/delivery/problems/:id', DeliveryProblemController.update);
 routes.delete('/delivery/problems/:id', DeliveryProblemController.delete);
 
