@@ -17,7 +17,7 @@ class DeliveryProblemController {
           delivery_id: id,
         },
         order: [['id', 'DESC']],
-        attributes: ['id', 'description'],
+        attributes: ['id', 'description', 'createdAt'],
       });
 
       if (problemsInDelivery.length === 0) {
