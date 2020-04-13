@@ -26,19 +26,18 @@ routes.get('/deliveryman', DeliverymanController.index);
 
 // Route to a deliveryman register a delivery as finished or started
 routes.put(
-  '/deliveryman/:id/deliveries',
-  upload.single('file'),
+  '/deliveryman/:deliverymanId/deliveries/:deliveryId/end',
   DeliveryStatusController.update
 );
 
 // Route to a deliveryman register a problem
 routes.post('/delivery/:delivery_id/problems', DeliveryProblemController.store);
 
-// Authentication middleware
-routes.use(authMiddleware);
-
 // Upload file route
 routes.post('/files', upload.single('file'), FileController.store);
+
+// Authentication middleware
+routes.use(authMiddleware);
 
 // Admin user routes
 routes.post('/users', UserController.store);
