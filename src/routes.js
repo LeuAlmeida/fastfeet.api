@@ -8,6 +8,8 @@ import RecipientController from './app/controllers/RecipientController';
 import DeliverymanController from './app/controllers/DeliverymanController';
 import DeliveryController from './app/controllers/DeliveryController';
 import DeliveryStatusController from './app/controllers/DeliveryStatusController';
+import DeliveryEndController from './app/controllers/DeliveryEndController';
+import DeliveryStartController from './app/controllers/DeliveryStartController';
 import DeliveryProblemController from './app/controllers/DeliveryProblemController';
 import FileController from './app/controllers/FileController';
 
@@ -24,10 +26,16 @@ routes.get('/deliveryman/:id/deliveries', DeliveryStatusController.index);
 // Route to list deliverymen and each deliveryman
 routes.get('/deliveryman', DeliverymanController.index);
 
-// Route to a deliveryman register a delivery as finished or started
+// Route to a deliveryman register a delivery as finished
 routes.put(
   '/deliveryman/:deliverymanId/deliveries/:deliveryId/end',
-  DeliveryStatusController.update
+  DeliveryEndController.update
+);
+
+// Route to a deliveryman register a delivery as started
+routes.put(
+  '/deliveryman/:deliverymanId/deliveries/:deliveryId/start',
+  DeliveryStartController.update
 );
 
 // Route to a deliveryman register a problem
