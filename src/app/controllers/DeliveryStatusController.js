@@ -108,13 +108,13 @@ class DeliveryStatusController {
       return res.status(400).json({ error: 'Validation fails.' });
     }
 
-    const { id } = req.params;
+    const { deliveryId, deliverymanId } = req.params;
 
     /**
      * Deliveryman verifier
      */
 
-    const deliveryman = await Deliveryman.findByPk(id);
+    const deliveryman = await Deliveryman.findByPk(deliverymanId);
 
     if (!deliveryman) {
       return res.status(400).json({ error: 'Deliveryman does not found. ' });
@@ -123,8 +123,6 @@ class DeliveryStatusController {
     /**
      * Delivery verifier
      */
-
-    const { deliveryId } = req.query;
 
     const delivery = await Delivery.findByPk(deliveryId);
 
@@ -138,7 +136,7 @@ class DeliveryStatusController {
 
     const allDeliveries = await Delivery.findAll({
       where: {
-        deliveryman_id: id,
+        deliveryman_id: deliverymanId,
       },
     });
 
@@ -163,24 +161,19 @@ class DeliveryStatusController {
      * Signature verifier if deliveryman try to update with end date
      */
 
-    const { end_date } = req.query;
+    const { signature_id } = req.body;
 
-    if (end_date) {
-      if (!req.file) {
+    if (signature_id) {
+      const signature = await File.findByPk(signature_id);
+
+      if (!signature) {
         return res
           .status(400)
-          .json({ error: 'You need to upload a file to end this delivery. ' });
+          .json({ error: 'Signature image does not found.' });
       }
 
-      const { originalname: name, filename: path } = req.file;
-
-      const { id: signature_id } = await File.create({
-        name,
-        path,
-      });
-
       const { product, recipient_id } = await delivery.update({
-        end_date,
+        end_date: new Date(),
         signature_id,
         status: 'DELIVERED',
       });
@@ -189,7 +182,7 @@ class DeliveryStatusController {
         product,
         recipient_id,
         signature_id,
-        end_date,
+        end_date: new Date(),
       });
     }
 
@@ -199,13 +192,11 @@ class DeliveryStatusController {
 
     const { start_date } = req.body;
 
-    if (!start_date && !end_date) {
-      return res.status(400).json({ error: 'No params are declared.' });
-    }
+    // if (!start_date && !end_date) {
+    //   return res.status(400).json({ error: 'No params are declared.' });
+    // }
 
     const startTime = getHours(parseISO(start_date));
-
-    console.log(startTime);
 
     if (startTime < 8 || startTime >= 18) {
       return res.status(400).json({
@@ -213,7 +204,7 @@ class DeliveryStatusController {
       });
     }
 
-    const { product, recipient_id, canceled_at } = await delivery.update({
+    const { product, canceled_at, recipient_id } = await delivery.update({
       start_date,
       status: 'WITHDRAWN',
     });
